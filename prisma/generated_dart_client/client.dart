@@ -1395,6 +1395,475 @@ class WithdrawalDelegate {
   }
 }
 
+class WithDrawalMethodDelegate {
+  const WithDrawalMethodDelegate._(this._client);
+
+  final PrismaClient _client;
+
+  _i1.ActionClient<_i2.WithDrawalMethod?> findUnique({
+    required _i3.WithDrawalMethodWhereUniqueInput where,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.findUnique,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod?>(
+      action: 'findUniqueWithDrawalMethod',
+      result: result,
+      factory: (e) => e != null ? _i2.WithDrawalMethod.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod> findUniqueOrThrow({
+    required _i3.WithDrawalMethodWhereUniqueInput where,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.findUniqueOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod>(
+      action: 'findUniqueWithDrawalMethodOrThrow',
+      result: result,
+      factory: (e) => _i2.WithDrawalMethod.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod?> findFirst({
+    _i3.WithDrawalMethodWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodOrderByWithRelationInput>,
+            _i3.WithDrawalMethodOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithDrawalMethodWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithDrawalMethodScalar,
+            Iterable<_i3.WithDrawalMethodScalar>>?
+        distinct,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.findFirst,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod?>(
+      action: 'findFirstWithDrawalMethod',
+      result: result,
+      factory: (e) => e != null ? _i2.WithDrawalMethod.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod> findFirstOrThrow({
+    _i3.WithDrawalMethodWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodOrderByWithRelationInput>,
+            _i3.WithDrawalMethodOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithDrawalMethodWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithDrawalMethodScalar,
+            Iterable<_i3.WithDrawalMethodScalar>>?
+        distinct,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.findFirstOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod>(
+      action: 'findFirstWithDrawalMethodOrThrow',
+      result: result,
+      factory: (e) => _i2.WithDrawalMethod.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i2.WithDrawalMethod>> findMany({
+    _i3.WithDrawalMethodWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodOrderByWithRelationInput>,
+            _i3.WithDrawalMethodOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithDrawalMethodWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithDrawalMethodScalar,
+            Iterable<_i3.WithDrawalMethodScalar>>?
+        distinct,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.findMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i2.WithDrawalMethod>>(
+      action: 'findManyWithDrawalMethod',
+      result: result,
+      factory: (values) =>
+          (values as Iterable).map((e) => _i2.WithDrawalMethod.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod> create({
+    required _i1.PrismaUnion<_i3.WithDrawalMethodCreateInput,
+            _i3.WithDrawalMethodUncheckedCreateInput>
+        data,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.createOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod>(
+      action: 'createOneWithDrawalMethod',
+      result: result,
+      factory: (e) => _i2.WithDrawalMethod.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> createMany({
+    required _i1.PrismaUnion<_i3.WithDrawalMethodCreateManyInput,
+            Iterable<_i3.WithDrawalMethodCreateManyInput>>
+        data,
+    bool? skipDuplicates,
+  }) {
+    final args = {
+      'data': data,
+      'skipDuplicates': skipDuplicates,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.createMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'createManyWithDrawalMethod',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod?> update({
+    required _i1.PrismaUnion<_i3.WithDrawalMethodUpdateInput,
+            _i3.WithDrawalMethodUncheckedUpdateInput>
+        data,
+    required _i3.WithDrawalMethodWhereUniqueInput where,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.updateOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod?>(
+      action: 'updateOneWithDrawalMethod',
+      result: result,
+      factory: (e) => e != null ? _i2.WithDrawalMethod.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> updateMany({
+    required _i1.PrismaUnion<_i3.WithDrawalMethodUpdateManyMutationInput,
+            _i3.WithDrawalMethodUncheckedUpdateManyInput>
+        data,
+    _i3.WithDrawalMethodWhereInput? where,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.updateMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'updateManyWithDrawalMethod',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod> upsert({
+    required _i3.WithDrawalMethodWhereUniqueInput where,
+    required _i1.PrismaUnion<_i3.WithDrawalMethodCreateInput,
+            _i3.WithDrawalMethodUncheckedCreateInput>
+        create,
+    required _i1.PrismaUnion<_i3.WithDrawalMethodUpdateInput,
+            _i3.WithDrawalMethodUncheckedUpdateInput>
+        update,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'create': create,
+      'update': update,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.upsertOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod>(
+      action: 'upsertOneWithDrawalMethod',
+      result: result,
+      factory: (e) => _i2.WithDrawalMethod.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.WithDrawalMethod?> delete({
+    required _i3.WithDrawalMethodWhereUniqueInput where,
+    _i3.WithDrawalMethodSelect? select,
+    _i3.WithDrawalMethodInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.deleteOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.WithDrawalMethod?>(
+      action: 'deleteOneWithDrawalMethod',
+      result: result,
+      factory: (e) => e != null ? _i2.WithDrawalMethod.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
+      {_i3.WithDrawalMethodWhereInput? where}) {
+    final args = {'where': where};
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.deleteMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'deleteManyWithDrawalMethod',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i3.WithDrawalMethodGroupByOutputType>> groupBy({
+    _i3.WithDrawalMethodWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodOrderByWithAggregationInput>,
+            _i3.WithDrawalMethodOrderByWithAggregationInput>?
+        orderBy,
+    required _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodScalar>,
+            _i3.WithDrawalMethodScalar>
+        by,
+    _i3.WithDrawalMethodScalarWhereWithAggregatesInput? having,
+    int? take,
+    int? skip,
+    _i3.WithDrawalMethodGroupByOutputTypeSelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'by': _i1.JsonQuery.groupBySerializer(by),
+      'having': having,
+      'take': take,
+      'skip': skip,
+      'select': select ?? _i1.JsonQuery.groupBySelectSerializer(by),
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.groupBy,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i3.WithDrawalMethodGroupByOutputType>>(
+      action: 'groupByWithDrawalMethod',
+      result: result,
+      factory: (values) => (values as Iterable)
+          .map((e) => _i3.WithDrawalMethodGroupByOutputType.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i3.AggregateWithDrawalMethod> aggregate({
+    _i3.WithDrawalMethodWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithDrawalMethodOrderByWithRelationInput>,
+            _i3.WithDrawalMethodOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithDrawalMethodWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i3.AggregateWithDrawalMethodSelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'select': select,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'WithDrawalMethod',
+      action: _i1.JsonQueryAction.aggregate,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AggregateWithDrawalMethod>(
+      action: 'aggregateWithDrawalMethod',
+      result: result,
+      factory: (e) => _i3.AggregateWithDrawalMethod.fromJson(e),
+    );
+  }
+}
+
 class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   PrismaClient({
     super.datasourceUrl,
@@ -1432,12 +1901,13 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'first_name',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': false,
+            'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
-            'hasDefaultValue': false,
+            'hasDefaultValue': true,
             'type': 'String',
+            'default': '',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1445,12 +1915,13 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'last_name',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': false,
+            'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
-            'hasDefaultValue': false,
+            'hasDefaultValue': true,
             'type': 'String',
+            'default': '',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1484,12 +1955,13 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'residential_address',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': false,
+            'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
-            'hasDefaultValue': false,
+            'hasDefaultValue': true,
             'type': 'String',
+            'default': '',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1534,6 +2006,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'hasDefaultValue': false,
             'type': 'Investment',
             'relationName': 'InvestmentToUser',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'WithDrawalMethod',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'WithDrawalMethod',
+            'relationName': 'UserToWithDrawalMethod',
             'relationFromFields': [],
             'relationToFields': [],
             'isGenerated': false,
@@ -1712,6 +2200,76 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'uniqueIndexes': [],
         'isGenerated': false,
       },
+      {
+        'name': 'WithDrawalMethod',
+        'dbName': 'withdrawal_methods',
+        'fields': [
+          {
+            'name': 'id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': true,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'String',
+            'default': {
+              'name': 'uuid(4)',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'name',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'String',
+            'default': '',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'user_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': true,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'user',
+            'kind': 'object',
+            'isList': false,
+            'isRequired': false,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'User',
+            'relationName': 'UserToWithDrawalMethod',
+            'relationFromFields': ['user_id'],
+            'relationToFields': ['id'],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+        ],
+        'primaryKey': null,
+        'uniqueFields': [],
+        'uniqueIndexes': [],
+        'isGenerated': false,
+      },
     ],
     'types': [],
     'indexes': [
@@ -1747,6 +2305,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
           {'name': 'id'}
         ],
       },
+      {
+        'model': 'WithDrawalMethod',
+        'type': 'id',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'id'}
+        ],
+      },
+      {
+        'model': 'WithDrawalMethod',
+        'type': 'unique',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'user_id'}
+        ],
+      },
     ],
   });
 
@@ -1777,7 +2351,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider        = "dart run orm"\n  previewFeatures = ["prismaSchemaFolder"]\n  schema          = "./schema/"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String       @id @default(uuid())\n  first_name          String?\n  last_name           String?\n  password            String\n  email_address       String       @unique\n  residential_address String?\n  created             DateTime?    @default(now())\n  updated_at          DateTime?    @updatedAt\n  Investment          Investment[]\n\n  @@map("users")\n}\n\nmodel Investment {\n  id                String       @id @default(uuid())\n  user_id           String\n  user              User?        @relation(fields: [user_id], references: [id])\n  investment_amount Float\n  Withdrawal        Withdrawal[]\n\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  id            String      @id @default(uuid())\n  investment_id String\n  description   String\n  amount        Float\n  investment    Investment? @relation(fields: [investment_id], references: [id])\n\n  @@map("withdrawals")\n}\n',
+            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String             @id @default(uuid())\n  first_name          String             @default("")\n  last_name           String             @default("")\n  password            String\n  email_address       String             @unique\n  residential_address String             @default("")\n  created             DateTime?          @default(now())\n  updated_at          DateTime?          @updatedAt\n  Investment          Investment[]\n  WithDrawalMethod    WithDrawalMethod[]\n\n  @@map("users")\n}\n\nmodel Investment {\n  id                String       @id @default(uuid())\n  user_id           String\n  user              User?        @relation(fields: [user_id], references: [id])\n  investment_amount Float\n  Withdrawal        Withdrawal[]\n\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  id            String      @id @default(uuid())\n  investment_id String\n  description   String\n  amount        Float\n  investment    Investment? @relation(fields: [investment_id], references: [id])\n\n  @@map("withdrawals")\n}\n\nmodel WithDrawalMethod {\n  id String @id @default(uuid())\n\n  name String @default("")\n\n  user_id String @unique\n\n  user User? @relation(fields: [user_id], references: [id])\n\n  @@map("withdrawal_methods")\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,
@@ -1795,4 +2369,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   InvestmentDelegate get investment => InvestmentDelegate._(this);
 
   WithdrawalDelegate get withdrawal => WithdrawalDelegate._(this);
+
+  WithDrawalMethodDelegate get withDrawalMethod =>
+      WithDrawalMethodDelegate._(this);
 }

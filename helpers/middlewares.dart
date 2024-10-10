@@ -1,36 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:crypto/crypto.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:dotenv/dotenv.dart';
 
-import '../prisma/generated_dart_client/client.dart';
 import '../prisma/generated_dart_client/model.dart';
+import 'constants.dart';
 
-final env = DotEnv()..load();
-
-final PrismaClient prismaClient =
-    PrismaClient(datasourceUrl: env['DATABASE_URL']);
-
-String hashPassword(String? password) =>
-    sha256.convert(utf8.encode(password ?? "")).toString();
-
-bool equalPassword(String? input, String? hashedPassword) =>
-    hashedPassword == hashPassword(input);
-
-SecretKey get jwtSecretKey => SecretKey(env['JWT_SECRET_KEY'].toString());
-
-String generateJwtToken(dynamic payload) {
-  var jwt = JWT(payload);
-  return jwt.sign(jwtSecretKey, expiresIn: Duration(days: 1));
-}
-
-JWT verifyToken(String token) => JWT.verify(token, jwtSecretKey);
-
-// Middleware used across all routes
-Handler authenticator(Handler handler) {
+Handler authMiddleWare(Handler handler) {
   JWT jwt;
   return (context) {
     var request = context.request;

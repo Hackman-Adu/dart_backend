@@ -9,7 +9,7 @@ Future<Response> onRequest(RequestContext context) async {
   var controller = context.read<UserController>();
   switch (request.method) {
     case HttpMethod.post:
-      return controller.loginUser(context);
+      return controller.login(context);
     default:
       return Response(statusCode: HttpStatus.methodNotAllowed);
   }

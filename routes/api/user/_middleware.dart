@@ -1,10 +1,10 @@
 import 'package:dart_frog/dart_frog.dart';
 
 import '../../../controllers/user/user_controller.dart';
-import '../../../helpers/helpers.dart';
+import '../../../helpers/middlewares.dart';
 import '../../../prisma/generated_dart_client/client.dart';
 
 Handler middleware(Handler handler) {
-  return authenticator(handler).use(provider<UserController>(
+  return authMiddleWare(handler).use(provider<UserController>(
       (context) => UserController(context.read<PrismaClient>())));
 }

@@ -5,9 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider        = "dart run orm"
-    previewFeatures = ["prismaSchemaFolder"]
-    schema          = "./schema/"
+    provider = "dart run orm"
 }
 
 datasource db {
@@ -16,15 +14,16 @@ datasource db {
 }
 
 model User {
-    id                  String       @id @default(uuid())
-    first_name          String?
-    last_name           String?
+    id                  String             @id @default(uuid())
+    first_name          String             @default("")
+    last_name           String             @default("")
     password            String
-    email_address       String       @unique
-    residential_address String?
-    created             DateTime?    @default(now())
-    updated_at          DateTime?    @updatedAt
+    email_address       String             @unique
+    residential_address String             @default("")
+    created             DateTime?          @default(now())
+    updated_at          DateTime?          @updatedAt
     Investment          Investment[]
+    WithDrawalMethod    WithDrawalMethod[]
 
     @@map("users")
 }
@@ -47,4 +46,16 @@ model Withdrawal {
     investment    Investment? @relation(fields: [investment_id], references: [id])
 
     @@map("withdrawals")
+}
+
+model WithDrawalMethod {
+    id String @id @default(uuid())
+
+    name String @default("")
+
+    user_id String @unique
+
+    user User? @relation(fields: [user_id], references: [id])
+
+    @@map("withdrawal_methods")
 }

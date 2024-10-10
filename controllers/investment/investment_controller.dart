@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_frog/src/_internal.dart';
 import 'package:orm/orm.dart';
 
+import '../../helpers/extensions.dart';
 import '../../prisma/generated_dart_client/client.dart';
 import '../../prisma/generated_dart_client/model.dart';
 import '../../prisma/generated_dart_client/prisma.dart';
@@ -18,6 +19,7 @@ class InvestmentController implements InvestmentControllerHelper {
     try {
       var payload = Investment.fromJson(await context.request.json());
       var amount = payload.investmentAmount ?? 0;
+      print("TYPE ${amount.runtimeType}");
       if (amount <= 0) return this.invalidAmountResponse();
       var user = context.read<User>();
       var investment = await prismaClient.investment.create(
@@ -25,9 +27,7 @@ class InvestmentController implements InvestmentControllerHelper {
               userId: user.id ?? "", investmentAmount: amount)));
       return this.parseInvestment(investment);
     } catch (e) {
-      return Response.json(
-          statusCode: HttpStatus.internalServerError,
-          body: {"message": e.toString()});
+      return Response().asInternalServerError(e);
     }
   }
 
@@ -43,7 +43,7 @@ class InvestmentController implements InvestmentControllerHelper {
                   StringFilter(equals: PrismaUnion.$1(user.id ?? "")))));
       return this.parseInvestments(investments.toList());
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response().asInternalServerError(e);
     }
   }
 
@@ -60,7 +60,7 @@ class InvestmentController implements InvestmentControllerHelper {
                       StringFilter(equals: PrismaUnion.$1(user.id ?? "")))))));
       return this.parseInvestment(investment);
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response().asInternalServerError(e);
     }
   }
 }

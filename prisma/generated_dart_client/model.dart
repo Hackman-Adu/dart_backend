@@ -84,6 +84,37 @@ class Investment {
       };
 }
 
+class WithDrawalMethod {
+  const WithDrawalMethod({
+    this.id,
+    this.name,
+    this.userId,
+    this.user,
+  });
+
+  factory WithDrawalMethod.fromJson(Map json) => WithDrawalMethod(
+        id: json['id'],
+        name: json['name'],
+        userId: json['user_id'],
+        user: json['user'] is Map ? _i1.User.fromJson(json['user']) : null,
+      );
+
+  final String? id;
+
+  final String? name;
+
+  final String? userId;
+
+  final _i1.User? user;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'user_id': userId,
+        'user': user?.toJson(),
+      };
+}
+
 class User {
   const User({
     this.id,
@@ -95,6 +126,7 @@ class User {
     this.created,
     this.updatedAt,
     this.investment,
+    this.withDrawalMethod,
     this.$count,
   });
 
@@ -117,6 +149,8 @@ class User {
         },
         investment: (json['Investment'] as Iterable?)
             ?.map((json) => _i1.Investment.fromJson(json)),
+        withDrawalMethod: (json['WithDrawalMethod'] as Iterable?)
+            ?.map((json) => _i1.WithDrawalMethod.fromJson(json)),
         $count: json['_count'] is Map
             ? _i2.UserCountOutputType.fromJson(json['_count'])
             : null,
@@ -140,6 +174,8 @@ class User {
 
   final Iterable<_i1.Investment>? investment;
 
+  final Iterable<_i1.WithDrawalMethod>? withDrawalMethod;
+
   final _i2.UserCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
@@ -152,6 +188,7 @@ class User {
         'created': created?.toIso8601String(),
         'updated_at': updatedAt?.toIso8601String(),
         'Investment': investment?.map((e) => e.toJson()),
+        'WithDrawalMethod': withDrawalMethod?.map((e) => e.toJson()),
         '_count': $count?.toJson(),
       };
 }

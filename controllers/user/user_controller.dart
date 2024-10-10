@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:orm/orm.dart';
 
-import '../../helpers/helpers.dart';
+import '../../helpers/constants.dart';
+import '../../helpers/extensions.dart';
 import '../../prisma/generated_dart_client/client.dart';
 import '../../prisma/generated_dart_client/model.dart';
 import '../../prisma/generated_dart_client/prisma.dart';
@@ -32,22 +33,19 @@ class UserController implements UserControllerHelper {
         });
       }
       var results = await this.prismaClient.user.create(
-          select: UserSelect(id: true, emailAddress: true),
+          include: UserInclude(
+              $count: PrismaUnion.$1(false), investment: PrismaUnion.$1(false)),
           data: PrismaUnion.$1(UserCreateInput(
               emailAddress: payload.emailAddress ?? "",
               password: hashPassword(payload.password))));
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "Account created successfully",
-        "user": results.toJson()
-      });
+      return this.parseUser(results);
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response().asInternalServerError(e);
     }
   }
 
   @override
-  Future<Response> loginUser(RequestContext context) async {
+  Future<Response> login(RequestContext context) async {
     try {
       var payload = User.fromJson(await context.request.json() ?? {});
       var user = await this.prismaClient.user.findUnique(
@@ -62,14 +60,9 @@ class UserController implements UserControllerHelper {
             statusCode: HttpStatus.unauthorized,
             body: {"message": "Incorrect email or password"});
       }
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "Successful",
-        "user": user.toJson(),
-        "token": generateJwtToken(user.toJson())
-      });
+      return this.parseUser(user, token: jwtToken(user.toJson()));
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response().asInternalServerError(e);
     }
   }
 
@@ -87,13 +80,25 @@ class UserController implements UserControllerHelper {
               firstName:
                   PrismaUnion.$1(payload.firstName ?? user.firstName ?? ""))),
           where: UserWhereUniqueInput(id: user.id));
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "User updated successfully",
-        "data": updatedUser?.toJson(),
-      });
+      return this.parseUser(updatedUser);
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response().asInternalServerError(e);
     }
+  }
+}
+
+extension UserControllerExtension on UserController {
+  Response parseUser(User? user, {String? token}) {
+    return Response.json(body: {
+      "status_code": 200,
+      "message": "Successful",
+      "registration_complete": [
+        user?.firstName,
+        user?.lastName,
+        user?.residentialAddress
+      ].any((e) => e?.trim() != ''),
+      "data": user?.toJson(),
+      if (token != null) "token": token,
+    });
   }
 }
