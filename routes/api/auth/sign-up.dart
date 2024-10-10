@@ -2,14 +2,14 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import '../../../services/user/user_service.dart';
+import '../../../controllers/user/user_controller.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final request = context.request;
-  var service = context.read<UserService>();
+  var controller = context.read<UserController>();
   switch (request.method) {
     case HttpMethod.post:
-      return service.signUp(context);
+      return controller.signUp(context);
     default:
       return Response(statusCode: HttpStatus.methodNotAllowed);
   }

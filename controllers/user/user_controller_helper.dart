@@ -1,6 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
 
-abstract class UserServiceManager {
+abstract class UserControllerHelper {
   Future<Response> signUp(RequestContext context);
 
   Future<Response> loginUser(RequestContext context);

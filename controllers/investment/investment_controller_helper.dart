@@ -1,6 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
 
-abstract class InvestmentManager {
+abstract class InvestmentControllerHelper {
   Future<Response> addInvestment(RequestContext context);
 
   Future<Response> getUserInvestments(RequestContext context);

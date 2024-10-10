@@ -7,10 +7,10 @@ import '../../helpers/helpers.dart';
 import '../../prisma/generated_dart_client/client.dart';
 import '../../prisma/generated_dart_client/model.dart';
 import '../../prisma/generated_dart_client/prisma.dart';
-import 'user_service_manager.dart';
+import 'user_controller_helper.dart';
 
-class UserServiceProvider implements UserServiceManager {
-  UserServiceProvider(this.prismaClient);
+class UserController implements UserControllerHelper {
+  UserController(this.prismaClient);
 
   PrismaClient prismaClient;
 

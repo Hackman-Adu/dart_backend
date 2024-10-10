@@ -6,34 +6,28 @@ import 'package:orm/orm.dart';
 import '../../prisma/generated_dart_client/client.dart';
 import '../../prisma/generated_dart_client/model.dart';
 import '../../prisma/generated_dart_client/prisma.dart';
-import 'investment_manager.dart';
+import 'investment_controller_helper.dart';
 
-class InvestmentServiceProvider implements InvestmentManager {
+class InvestmentController implements InvestmentControllerHelper {
+  InvestmentController(this.prismaClient);
+
   PrismaClient prismaClient;
 
-  InvestmentServiceProvider(this.prismaClient);
   @override
   Future<Response> addInvestment(RequestContext context) async {
     try {
       var payload = Investment.fromJson(await context.request.json());
-      if (payload.investmentAmount == null) {
-        return Response.json(
-            statusCode: HttpStatus.badRequest,
-            body: {"message": "Provide investment amount"});
-      }
+      var amount = payload.investmentAmount ?? 0;
+      if (amount <= 0) return this.invalidAmountResponse();
       var user = context.read<User>();
       var investment = await prismaClient.investment.create(
           data: PrismaUnion.$2(InvestmentUncheckedCreateInput(
-              userId: user.id ?? "",
-              investmentAmount:
-                  double.parse(payload.investmentAmount?.toString() ?? "0"))));
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "Successful",
-        "investment_id": investment.id
-      });
+              userId: user.id ?? "", investmentAmount: amount)));
+      return this.parseInvestment(investment);
     } catch (e) {
-      return Response.json(statusCode: HttpStatus.internalServerError);
+      return Response.json(
+          statusCode: HttpStatus.internalServerError,
+          body: {"message": e.toString()});
     }
   }
 
@@ -47,20 +41,7 @@ class InvestmentServiceProvider implements InvestmentManager {
           where: InvestmentWhereInput(
               userId: PrismaUnion.$1(
                   StringFilter(equals: PrismaUnion.$1(user.id ?? "")))));
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "Successful",
-        if (investments.isNotEmpty)
-          "total_investment": investments
-              .map((e) => e.investmentAmount)
-              .toList()
-              .reduce((a, b) => (a ?? 0) + (b ?? 0)),
-        "data": investments.map((e) {
-          var d = e.toJson();
-          d.removeWhere((k, v) => v == null);
-          return d;
-        }).toList()
-      });
+      return this.parseInvestments(investments.toList());
     } catch (e) {
       return Response.json(statusCode: HttpStatus.internalServerError);
     }
@@ -77,13 +58,42 @@ class InvestmentServiceProvider implements InvestmentManager {
               AND: PrismaUnion.$1(InvestmentWhereInput(
                   userId: PrismaUnion.$1(
                       StringFilter(equals: PrismaUnion.$1(user.id ?? "")))))));
-      return Response.json(body: {
-        "status_code": 200,
-        "message": "Successful",
-        "data": investment?.toJson()
-      });
+      return this.parseInvestment(investment);
     } catch (e) {
       return Response.json(statusCode: HttpStatus.internalServerError);
     }
+  }
+}
+
+extension InvestmentControllerExtension on InvestmentController {
+  Response invalidAmountResponse() {
+    return Response.json(statusCode: HttpStatus.badRequest, body: {
+      "message": "Investment amount cannot be less than or equal to zero"
+    });
+  }
+
+  Response parseInvestment(Investment? investment) {
+    return Response.json(body: {
+      "status_code": 200,
+      "message": "Successful",
+      "data": investment?.toJson()
+    });
+  }
+
+  Response parseInvestments(List<Investment> investments) {
+    return Response.json(body: {
+      "status_code": 200,
+      "message": "Successful",
+      if (investments.isNotEmpty)
+        "total_investment": investments
+            .map((e) => e.investmentAmount)
+            .toList()
+            .reduce((a, b) => (a ?? 0) + (b ?? 0)),
+      "data": investments.map((e) {
+        var d = e.toJson();
+        d.removeWhere((k, v) => v == null);
+        return d;
+      }).toList()
+    });
   }
 }
