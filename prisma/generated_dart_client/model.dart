@@ -2,12 +2,52 @@
 import 'model.dart' as _i1;
 import 'prisma.dart' as _i2;
 
+class Withdrawal {
+  const Withdrawal({
+    this.id,
+    this.investmentId,
+    this.description,
+    this.amount,
+    this.investment,
+  });
+
+  factory Withdrawal.fromJson(Map json) => Withdrawal(
+        id: json['id'],
+        investmentId: json['investment_id'],
+        description: json['description'],
+        amount: json['amount'],
+        investment: json['investment'] is Map
+            ? _i1.Investment.fromJson(json['investment'])
+            : null,
+      );
+
+  final String? id;
+
+  final String? investmentId;
+
+  final String? description;
+
+  final double? amount;
+
+  final _i1.Investment? investment;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'investment_id': investmentId,
+        'description': description,
+        'amount': amount,
+        'investment': investment?.toJson(),
+      };
+}
+
 class Investment {
   const Investment({
     this.id,
     this.userId,
     this.investmentAmount,
     this.user,
+    this.withdrawal,
+    this.$count,
   });
 
   factory Investment.fromJson(Map json) => Investment(
@@ -15,6 +55,11 @@ class Investment {
         userId: json['user_id'],
         investmentAmount: json['investment_amount'],
         user: json['user'] is Map ? _i1.User.fromJson(json['user']) : null,
+        withdrawal: (json['Withdrawal'] as Iterable?)
+            ?.map((json) => _i1.Withdrawal.fromJson(json)),
+        $count: json['_count'] is Map
+            ? _i2.InvestmentCountOutputType.fromJson(json['_count'])
+            : null,
       );
 
   final String? id;
@@ -25,11 +70,17 @@ class Investment {
 
   final _i1.User? user;
 
+  final Iterable<_i1.Withdrawal>? withdrawal;
+
+  final _i2.InvestmentCountOutputType? $count;
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'user_id': userId,
         'investment_amount': investmentAmount,
         'user': user?.toJson(),
+        'Withdrawal': withdrawal?.map((e) => e.toJson()),
+        '_count': $count?.toJson(),
       };
 }
 

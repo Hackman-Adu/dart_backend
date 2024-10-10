@@ -929,6 +929,472 @@ class InvestmentDelegate {
   }
 }
 
+class WithdrawalDelegate {
+  const WithdrawalDelegate._(this._client);
+
+  final PrismaClient _client;
+
+  _i1.ActionClient<_i2.Withdrawal?> findUnique({
+    required _i3.WithdrawalWhereUniqueInput where,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.findUnique,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal?>(
+      action: 'findUniqueWithdrawal',
+      result: result,
+      factory: (e) => e != null ? _i2.Withdrawal.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal> findUniqueOrThrow({
+    required _i3.WithdrawalWhereUniqueInput where,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.findUniqueOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal>(
+      action: 'findUniqueWithdrawalOrThrow',
+      result: result,
+      factory: (e) => _i2.Withdrawal.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal?> findFirst({
+    _i3.WithdrawalWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithdrawalOrderByWithRelationInput>,
+            _i3.WithdrawalOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithdrawalWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithdrawalScalar, Iterable<_i3.WithdrawalScalar>>?
+        distinct,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.findFirst,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal?>(
+      action: 'findFirstWithdrawal',
+      result: result,
+      factory: (e) => e != null ? _i2.Withdrawal.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal> findFirstOrThrow({
+    _i3.WithdrawalWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithdrawalOrderByWithRelationInput>,
+            _i3.WithdrawalOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithdrawalWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithdrawalScalar, Iterable<_i3.WithdrawalScalar>>?
+        distinct,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.findFirstOrThrow,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal>(
+      action: 'findFirstWithdrawalOrThrow',
+      result: result,
+      factory: (e) => _i2.Withdrawal.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i2.Withdrawal>> findMany({
+    _i3.WithdrawalWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithdrawalOrderByWithRelationInput>,
+            _i3.WithdrawalOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithdrawalWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i1.PrismaUnion<_i3.WithdrawalScalar, Iterable<_i3.WithdrawalScalar>>?
+        distinct,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'distinct': distinct,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.findMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i2.Withdrawal>>(
+      action: 'findManyWithdrawal',
+      result: result,
+      factory: (values) =>
+          (values as Iterable).map((e) => _i2.Withdrawal.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal> create({
+    required _i1.PrismaUnion<_i3.WithdrawalCreateInput,
+            _i3.WithdrawalUncheckedCreateInput>
+        data,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.createOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal>(
+      action: 'createOneWithdrawal',
+      result: result,
+      factory: (e) => _i2.Withdrawal.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> createMany({
+    required _i1.PrismaUnion<_i3.WithdrawalCreateManyInput,
+            Iterable<_i3.WithdrawalCreateManyInput>>
+        data,
+    bool? skipDuplicates,
+  }) {
+    final args = {
+      'data': data,
+      'skipDuplicates': skipDuplicates,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.createMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'createManyWithdrawal',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal?> update({
+    required _i1.PrismaUnion<_i3.WithdrawalUpdateInput,
+            _i3.WithdrawalUncheckedUpdateInput>
+        data,
+    required _i3.WithdrawalWhereUniqueInput where,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.updateOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal?>(
+      action: 'updateOneWithdrawal',
+      result: result,
+      factory: (e) => e != null ? _i2.Withdrawal.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> updateMany({
+    required _i1.PrismaUnion<_i3.WithdrawalUpdateManyMutationInput,
+            _i3.WithdrawalUncheckedUpdateManyInput>
+        data,
+    _i3.WithdrawalWhereInput? where,
+  }) {
+    final args = {
+      'data': data,
+      'where': where,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.updateMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'updateManyWithdrawal',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal> upsert({
+    required _i3.WithdrawalWhereUniqueInput where,
+    required _i1.PrismaUnion<_i3.WithdrawalCreateInput,
+            _i3.WithdrawalUncheckedCreateInput>
+        create,
+    required _i1.PrismaUnion<_i3.WithdrawalUpdateInput,
+            _i3.WithdrawalUncheckedUpdateInput>
+        update,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'create': create,
+      'update': update,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.upsertOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal>(
+      action: 'upsertOneWithdrawal',
+      result: result,
+      factory: (e) => _i2.Withdrawal.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<_i2.Withdrawal?> delete({
+    required _i3.WithdrawalWhereUniqueInput where,
+    _i3.WithdrawalSelect? select,
+    _i3.WithdrawalInclude? include,
+  }) {
+    final args = {
+      'where': where,
+      'select': select,
+      'include': include,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.deleteOne,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i2.Withdrawal?>(
+      action: 'deleteOneWithdrawal',
+      result: result,
+      factory: (e) => e != null ? _i2.Withdrawal.fromJson(e) : null,
+    );
+  }
+
+  _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
+      {_i3.WithdrawalWhereInput? where}) {
+    final args = {'where': where};
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.deleteMany,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AffectedRowsOutput>(
+      action: 'deleteManyWithdrawal',
+      result: result,
+      factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
+    );
+  }
+
+  _i1.ActionClient<Iterable<_i3.WithdrawalGroupByOutputType>> groupBy({
+    _i3.WithdrawalWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithdrawalOrderByWithAggregationInput>,
+            _i3.WithdrawalOrderByWithAggregationInput>?
+        orderBy,
+    required _i1
+        .PrismaUnion<Iterable<_i3.WithdrawalScalar>, _i3.WithdrawalScalar>
+        by,
+    _i3.WithdrawalScalarWhereWithAggregatesInput? having,
+    int? take,
+    int? skip,
+    _i3.WithdrawalGroupByOutputTypeSelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'by': _i1.JsonQuery.groupBySerializer(by),
+      'having': having,
+      'take': take,
+      'skip': skip,
+      'select': select ?? _i1.JsonQuery.groupBySelectSerializer(by),
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.groupBy,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<Iterable<_i3.WithdrawalGroupByOutputType>>(
+      action: 'groupByWithdrawal',
+      result: result,
+      factory: (values) => (values as Iterable)
+          .map((e) => _i3.WithdrawalGroupByOutputType.fromJson(e)),
+    );
+  }
+
+  _i1.ActionClient<_i3.AggregateWithdrawal> aggregate({
+    _i3.WithdrawalWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.WithdrawalOrderByWithRelationInput>,
+            _i3.WithdrawalOrderByWithRelationInput>?
+        orderBy,
+    _i3.WithdrawalWhereUniqueInput? cursor,
+    int? take,
+    int? skip,
+    _i3.AggregateWithdrawalSelect? select,
+  }) {
+    final args = {
+      'where': where,
+      'orderBy': orderBy,
+      'cursor': cursor,
+      'take': take,
+      'skip': skip,
+      'select': select,
+    };
+    final query = _i1.serializeJsonQuery(
+      args: args,
+      modelName: 'Withdrawal',
+      action: _i1.JsonQueryAction.aggregate,
+      datamodel: PrismaClient.datamodel,
+    );
+    final result = _client.$engine.request(
+      query,
+      headers: _client.$transaction.headers,
+      transaction: _client.$transaction.transaction,
+    );
+    return _i1.ActionClient<_i3.AggregateWithdrawal>(
+      action: 'aggregateWithdrawal',
+      result: result,
+      factory: (e) => _i3.AggregateWithdrawal.fromJson(e),
+    );
+  }
+}
+
 class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   PrismaClient({
     super.datasourceUrl,
@@ -943,7 +1409,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     'models': [
       {
         'name': 'User',
-        'dbName': null,
+        'dbName': 'users',
         'fields': [
           {
             'name': 'id',
@@ -1081,7 +1547,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
       },
       {
         'name': 'Investment',
-        'dbName': null,
+        'dbName': 'investments',
         'fields': [
           {
             'name': 'id',
@@ -1117,7 +1583,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'user',
             'kind': 'object',
             'isList': false,
-            'isRequired': true,
+            'isRequired': false,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
@@ -1133,12 +1599,110 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'name': 'investment_amount',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': false,
+            'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'Float',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'Withdrawal',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Withdrawal',
+            'relationName': 'InvestmentToWithdrawal',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+        ],
+        'primaryKey': null,
+        'uniqueFields': [],
+        'uniqueIndexes': [],
+        'isGenerated': false,
+      },
+      {
+        'name': 'Withdrawal',
+        'dbName': 'withdrawals',
+        'fields': [
+          {
+            'name': 'id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': true,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'String',
+            'default': {
+              'name': 'uuid(4)',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'investment_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'description',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'amount',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Float',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'investment',
+            'kind': 'object',
+            'isList': false,
+            'isRequired': false,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Investment',
+            'relationName': 'InvestmentToWithdrawal',
+            'relationFromFields': ['investment_id'],
+            'relationToFields': ['id'],
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1175,6 +1739,14 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
           {'name': 'id'}
         ],
       },
+      {
+        'model': 'Withdrawal',
+        'type': 'id',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'id'}
+        ],
+      },
     ],
   });
 
@@ -1205,7 +1777,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String       @id @default(uuid())\n  first_name          String?\n  last_name           String?\n  password            String\n  email_address       String       @unique\n  residential_address String?\n  created             DateTime?    @default(now())\n  updated_at          DateTime?    @updatedAt\n  Investment          Investment[]\n}\n\nmodel Investment {\n  id                String @id @default(uuid())\n  user_id           String\n  user              User   @relation(fields: [user_id], references: [id])\n  investment_amount Float?\n}\n',
+            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider        = "dart run orm"\n  previewFeatures = ["prismaSchemaFolder"]\n  schema          = "./schema/"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String       @id @default(uuid())\n  first_name          String?\n  last_name           String?\n  password            String\n  email_address       String       @unique\n  residential_address String?\n  created             DateTime?    @default(now())\n  updated_at          DateTime?    @updatedAt\n  Investment          Investment[]\n\n  @@map("users")\n}\n\nmodel Investment {\n  id                String       @id @default(uuid())\n  user_id           String\n  user              User?        @relation(fields: [user_id], references: [id])\n  investment_amount Float\n  Withdrawal        Withdrawal[]\n\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  id            String      @id @default(uuid())\n  investment_id String\n  description   String\n  amount        Float\n  investment    Investment? @relation(fields: [investment_id], references: [id])\n\n  @@map("withdrawals")\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,
@@ -1221,4 +1793,6 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   UserDelegate get user => UserDelegate._(this);
 
   InvestmentDelegate get investment => InvestmentDelegate._(this);
+
+  WithdrawalDelegate get withdrawal => WithdrawalDelegate._(this);
 }

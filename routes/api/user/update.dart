@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_frog/dart_frog.dart';
 
 import '../../../services/user/user_service.dart';
@@ -9,6 +11,6 @@ Future<Response> onRequest(RequestContext context) async {
     case HttpMethod.put:
       return service.update(context);
     default:
-      return Response(body: "/Cannot ${request.method.name}");
+      return Response(statusCode: HttpStatus.methodNotAllowed);
   }
 }

@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import '../../utils/utils.dart';
+import '../../helpers/helpers.dart';
+import '../../prisma/generated_dart_client/client.dart';
 
 Handler middleware(Handler handler) {
   return (context) {
@@ -14,6 +15,7 @@ Handler middleware(Handler handler) {
         'status': HttpStatus.forbidden
       });
     }
-    return handler(context);
+    return handler
+        .use(provider<PrismaClient>((context) => prismaClient))(context);
   };
 }
