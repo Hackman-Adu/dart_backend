@@ -7,6 +7,7 @@
 .dart_tool/
 .packages
 pubspec.lock
+prisma/generated_dart_client
 
 # Files and directories created by dart_frog
 build/
