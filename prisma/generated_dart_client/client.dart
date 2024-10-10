@@ -189,7 +189,8 @@ class UserDelegate {
   }
 
   _i1.ActionClient<_i2.User> create({
-    _i1.PrismaUnion<_i3.UserCreateInput, _i3.UserUncheckedCreateInput>? data,
+    required _i1.PrismaUnion<_i3.UserCreateInput, _i3.UserUncheckedCreateInput>
+        data,
     _i3.UserSelect? select,
     _i3.UserInclude? include,
   }) {
@@ -462,15 +463,15 @@ class UserDelegate {
   }
 }
 
-class PostDelegate {
-  const PostDelegate._(this._client);
+class InvestmentDelegate {
+  const InvestmentDelegate._(this._client);
 
   final PrismaClient _client;
 
-  _i1.ActionClient<_i2.Post?> findUnique({
-    required _i3.PostWhereUniqueInput where,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+  _i1.ActionClient<_i2.Investment?> findUnique({
+    required _i3.InvestmentWhereUniqueInput where,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -479,7 +480,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.findUnique,
       datamodel: PrismaClient.datamodel,
     );
@@ -488,17 +489,17 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post?>(
-      action: 'findUniquePost',
+    return _i1.ActionClient<_i2.Investment?>(
+      action: 'findUniqueInvestment',
       result: result,
-      factory: (e) => e != null ? _i2.Post.fromJson(e) : null,
+      factory: (e) => e != null ? _i2.Investment.fromJson(e) : null,
     );
   }
 
-  _i1.ActionClient<_i2.Post> findUniqueOrThrow({
-    required _i3.PostWhereUniqueInput where,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+  _i1.ActionClient<_i2.Investment> findUniqueOrThrow({
+    required _i3.InvestmentWhereUniqueInput where,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -507,7 +508,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.findUniqueOrThrow,
       datamodel: PrismaClient.datamodel,
     );
@@ -516,24 +517,25 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post>(
-      action: 'findUniquePostOrThrow',
+    return _i1.ActionClient<_i2.Investment>(
+      action: 'findUniqueInvestmentOrThrow',
       result: result,
-      factory: (e) => _i2.Post.fromJson(e),
+      factory: (e) => _i2.Investment.fromJson(e),
     );
   }
 
-  _i1.ActionClient<_i2.Post?> findFirst({
-    _i3.PostWhereInput? where,
-    _i1.PrismaUnion<Iterable<_i3.PostOrderByWithRelationInput>,
-            _i3.PostOrderByWithRelationInput>?
+  _i1.ActionClient<_i2.Investment?> findFirst({
+    _i3.InvestmentWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.InvestmentOrderByWithRelationInput>,
+            _i3.InvestmentOrderByWithRelationInput>?
         orderBy,
-    _i3.PostWhereUniqueInput? cursor,
+    _i3.InvestmentWhereUniqueInput? cursor,
     int? take,
     int? skip,
-    _i1.PrismaUnion<_i3.PostScalar, Iterable<_i3.PostScalar>>? distinct,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    _i1.PrismaUnion<_i3.InvestmentScalar, Iterable<_i3.InvestmentScalar>>?
+        distinct,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -547,7 +549,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.findFirst,
       datamodel: PrismaClient.datamodel,
     );
@@ -556,24 +558,25 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post?>(
-      action: 'findFirstPost',
+    return _i1.ActionClient<_i2.Investment?>(
+      action: 'findFirstInvestment',
       result: result,
-      factory: (e) => e != null ? _i2.Post.fromJson(e) : null,
+      factory: (e) => e != null ? _i2.Investment.fromJson(e) : null,
     );
   }
 
-  _i1.ActionClient<_i2.Post> findFirstOrThrow({
-    _i3.PostWhereInput? where,
-    _i1.PrismaUnion<Iterable<_i3.PostOrderByWithRelationInput>,
-            _i3.PostOrderByWithRelationInput>?
+  _i1.ActionClient<_i2.Investment> findFirstOrThrow({
+    _i3.InvestmentWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.InvestmentOrderByWithRelationInput>,
+            _i3.InvestmentOrderByWithRelationInput>?
         orderBy,
-    _i3.PostWhereUniqueInput? cursor,
+    _i3.InvestmentWhereUniqueInput? cursor,
     int? take,
     int? skip,
-    _i1.PrismaUnion<_i3.PostScalar, Iterable<_i3.PostScalar>>? distinct,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    _i1.PrismaUnion<_i3.InvestmentScalar, Iterable<_i3.InvestmentScalar>>?
+        distinct,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -587,7 +590,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.findFirstOrThrow,
       datamodel: PrismaClient.datamodel,
     );
@@ -596,24 +599,25 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post>(
-      action: 'findFirstPostOrThrow',
+    return _i1.ActionClient<_i2.Investment>(
+      action: 'findFirstInvestmentOrThrow',
       result: result,
-      factory: (e) => _i2.Post.fromJson(e),
+      factory: (e) => _i2.Investment.fromJson(e),
     );
   }
 
-  _i1.ActionClient<Iterable<_i2.Post>> findMany({
-    _i3.PostWhereInput? where,
-    _i1.PrismaUnion<Iterable<_i3.PostOrderByWithRelationInput>,
-            _i3.PostOrderByWithRelationInput>?
+  _i1.ActionClient<Iterable<_i2.Investment>> findMany({
+    _i3.InvestmentWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.InvestmentOrderByWithRelationInput>,
+            _i3.InvestmentOrderByWithRelationInput>?
         orderBy,
-    _i3.PostWhereUniqueInput? cursor,
+    _i3.InvestmentWhereUniqueInput? cursor,
     int? take,
     int? skip,
-    _i1.PrismaUnion<_i3.PostScalar, Iterable<_i3.PostScalar>>? distinct,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    _i1.PrismaUnion<_i3.InvestmentScalar, Iterable<_i3.InvestmentScalar>>?
+        distinct,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -627,7 +631,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.findMany,
       datamodel: PrismaClient.datamodel,
     );
@@ -636,19 +640,20 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<Iterable<_i2.Post>>(
-      action: 'findManyPost',
+    return _i1.ActionClient<Iterable<_i2.Investment>>(
+      action: 'findManyInvestment',
       result: result,
       factory: (values) =>
-          (values as Iterable).map((e) => _i2.Post.fromJson(e)),
+          (values as Iterable).map((e) => _i2.Investment.fromJson(e)),
     );
   }
 
-  _i1.ActionClient<_i2.Post> create({
-    required _i1.PrismaUnion<_i3.PostCreateInput, _i3.PostUncheckedCreateInput>
+  _i1.ActionClient<_i2.Investment> create({
+    required _i1.PrismaUnion<_i3.InvestmentCreateInput,
+            _i3.InvestmentUncheckedCreateInput>
         data,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'data': data,
@@ -657,7 +662,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.createOne,
       datamodel: PrismaClient.datamodel,
     );
@@ -666,16 +671,16 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post>(
-      action: 'createOnePost',
+    return _i1.ActionClient<_i2.Investment>(
+      action: 'createOneInvestment',
       result: result,
-      factory: (e) => _i2.Post.fromJson(e),
+      factory: (e) => _i2.Investment.fromJson(e),
     );
   }
 
   _i1.ActionClient<_i3.AffectedRowsOutput> createMany({
-    required _i1
-        .PrismaUnion<_i3.PostCreateManyInput, Iterable<_i3.PostCreateManyInput>>
+    required _i1.PrismaUnion<_i3.InvestmentCreateManyInput,
+            Iterable<_i3.InvestmentCreateManyInput>>
         data,
     bool? skipDuplicates,
   }) {
@@ -685,7 +690,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.createMany,
       datamodel: PrismaClient.datamodel,
     );
@@ -695,18 +700,19 @@ class PostDelegate {
       transaction: _client.$transaction.transaction,
     );
     return _i1.ActionClient<_i3.AffectedRowsOutput>(
-      action: 'createManyPost',
+      action: 'createManyInvestment',
       result: result,
       factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
     );
   }
 
-  _i1.ActionClient<_i2.Post?> update({
-    required _i1.PrismaUnion<_i3.PostUpdateInput, _i3.PostUncheckedUpdateInput>
+  _i1.ActionClient<_i2.Investment?> update({
+    required _i1.PrismaUnion<_i3.InvestmentUpdateInput,
+            _i3.InvestmentUncheckedUpdateInput>
         data,
-    required _i3.PostWhereUniqueInput where,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    required _i3.InvestmentWhereUniqueInput where,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'data': data,
@@ -716,7 +722,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.updateOne,
       datamodel: PrismaClient.datamodel,
     );
@@ -725,18 +731,18 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post?>(
-      action: 'updateOnePost',
+    return _i1.ActionClient<_i2.Investment?>(
+      action: 'updateOneInvestment',
       result: result,
-      factory: (e) => e != null ? _i2.Post.fromJson(e) : null,
+      factory: (e) => e != null ? _i2.Investment.fromJson(e) : null,
     );
   }
 
   _i1.ActionClient<_i3.AffectedRowsOutput> updateMany({
-    required _i1.PrismaUnion<_i3.PostUpdateManyMutationInput,
-            _i3.PostUncheckedUpdateManyInput>
+    required _i1.PrismaUnion<_i3.InvestmentUpdateManyMutationInput,
+            _i3.InvestmentUncheckedUpdateManyInput>
         data,
-    _i3.PostWhereInput? where,
+    _i3.InvestmentWhereInput? where,
   }) {
     final args = {
       'data': data,
@@ -744,7 +750,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.updateMany,
       datamodel: PrismaClient.datamodel,
     );
@@ -754,20 +760,22 @@ class PostDelegate {
       transaction: _client.$transaction.transaction,
     );
     return _i1.ActionClient<_i3.AffectedRowsOutput>(
-      action: 'updateManyPost',
+      action: 'updateManyInvestment',
       result: result,
       factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
     );
   }
 
-  _i1.ActionClient<_i2.Post> upsert({
-    required _i3.PostWhereUniqueInput where,
-    required _i1.PrismaUnion<_i3.PostCreateInput, _i3.PostUncheckedCreateInput>
+  _i1.ActionClient<_i2.Investment> upsert({
+    required _i3.InvestmentWhereUniqueInput where,
+    required _i1.PrismaUnion<_i3.InvestmentCreateInput,
+            _i3.InvestmentUncheckedCreateInput>
         create,
-    required _i1.PrismaUnion<_i3.PostUpdateInput, _i3.PostUncheckedUpdateInput>
+    required _i1.PrismaUnion<_i3.InvestmentUpdateInput,
+            _i3.InvestmentUncheckedUpdateInput>
         update,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -778,7 +786,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.upsertOne,
       datamodel: PrismaClient.datamodel,
     );
@@ -787,17 +795,17 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post>(
-      action: 'upsertOnePost',
+    return _i1.ActionClient<_i2.Investment>(
+      action: 'upsertOneInvestment',
       result: result,
-      factory: (e) => _i2.Post.fromJson(e),
+      factory: (e) => _i2.Investment.fromJson(e),
     );
   }
 
-  _i1.ActionClient<_i2.Post?> delete({
-    required _i3.PostWhereUniqueInput where,
-    _i3.PostSelect? select,
-    _i3.PostInclude? include,
+  _i1.ActionClient<_i2.Investment?> delete({
+    required _i3.InvestmentWhereUniqueInput where,
+    _i3.InvestmentSelect? select,
+    _i3.InvestmentInclude? include,
   }) {
     final args = {
       'where': where,
@@ -806,7 +814,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.deleteOne,
       datamodel: PrismaClient.datamodel,
     );
@@ -815,19 +823,19 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i2.Post?>(
-      action: 'deleteOnePost',
+    return _i1.ActionClient<_i2.Investment?>(
+      action: 'deleteOneInvestment',
       result: result,
-      factory: (e) => e != null ? _i2.Post.fromJson(e) : null,
+      factory: (e) => e != null ? _i2.Investment.fromJson(e) : null,
     );
   }
 
   _i1.ActionClient<_i3.AffectedRowsOutput> deleteMany(
-      {_i3.PostWhereInput? where}) {
+      {_i3.InvestmentWhereInput? where}) {
     final args = {'where': where};
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.deleteMany,
       datamodel: PrismaClient.datamodel,
     );
@@ -837,22 +845,24 @@ class PostDelegate {
       transaction: _client.$transaction.transaction,
     );
     return _i1.ActionClient<_i3.AffectedRowsOutput>(
-      action: 'deleteManyPost',
+      action: 'deleteManyInvestment',
       result: result,
       factory: (e) => _i3.AffectedRowsOutput.fromJson(e),
     );
   }
 
-  _i1.ActionClient<Iterable<_i3.PostGroupByOutputType>> groupBy({
-    _i3.PostWhereInput? where,
-    _i1.PrismaUnion<Iterable<_i3.PostOrderByWithAggregationInput>,
-            _i3.PostOrderByWithAggregationInput>?
+  _i1.ActionClient<Iterable<_i3.InvestmentGroupByOutputType>> groupBy({
+    _i3.InvestmentWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.InvestmentOrderByWithAggregationInput>,
+            _i3.InvestmentOrderByWithAggregationInput>?
         orderBy,
-    required _i1.PrismaUnion<Iterable<_i3.PostScalar>, _i3.PostScalar> by,
-    _i3.PostScalarWhereWithAggregatesInput? having,
+    required _i1
+        .PrismaUnion<Iterable<_i3.InvestmentScalar>, _i3.InvestmentScalar>
+        by,
+    _i3.InvestmentScalarWhereWithAggregatesInput? having,
     int? take,
     int? skip,
-    _i3.PostGroupByOutputTypeSelect? select,
+    _i3.InvestmentGroupByOutputTypeSelect? select,
   }) {
     final args = {
       'where': where,
@@ -865,7 +875,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.groupBy,
       datamodel: PrismaClient.datamodel,
     );
@@ -874,23 +884,23 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<Iterable<_i3.PostGroupByOutputType>>(
-      action: 'groupByPost',
+    return _i1.ActionClient<Iterable<_i3.InvestmentGroupByOutputType>>(
+      action: 'groupByInvestment',
       result: result,
       factory: (values) => (values as Iterable)
-          .map((e) => _i3.PostGroupByOutputType.fromJson(e)),
+          .map((e) => _i3.InvestmentGroupByOutputType.fromJson(e)),
     );
   }
 
-  _i1.ActionClient<_i3.AggregatePost> aggregate({
-    _i3.PostWhereInput? where,
-    _i1.PrismaUnion<Iterable<_i3.PostOrderByWithRelationInput>,
-            _i3.PostOrderByWithRelationInput>?
+  _i1.ActionClient<_i3.AggregateInvestment> aggregate({
+    _i3.InvestmentWhereInput? where,
+    _i1.PrismaUnion<Iterable<_i3.InvestmentOrderByWithRelationInput>,
+            _i3.InvestmentOrderByWithRelationInput>?
         orderBy,
-    _i3.PostWhereUniqueInput? cursor,
+    _i3.InvestmentWhereUniqueInput? cursor,
     int? take,
     int? skip,
-    _i3.AggregatePostSelect? select,
+    _i3.AggregateInvestmentSelect? select,
   }) {
     final args = {
       'where': where,
@@ -902,7 +912,7 @@ class PostDelegate {
     };
     final query = _i1.serializeJsonQuery(
       args: args,
-      modelName: 'Post',
+      modelName: 'Investment',
       action: _i1.JsonQueryAction.aggregate,
       datamodel: PrismaClient.datamodel,
     );
@@ -911,10 +921,10 @@ class PostDelegate {
       headers: _client.$transaction.headers,
       transaction: _client.$transaction.transaction,
     );
-    return _i1.ActionClient<_i3.AggregatePost>(
-      action: 'aggregatePost',
+    return _i1.ActionClient<_i3.AggregateInvestment>(
+      action: 'aggregateInvestment',
       result: result,
-      factory: (e) => _i3.AggregatePost.fromJson(e),
+      factory: (e) => _i3.AggregateInvestment.fromJson(e),
     );
   }
 }
@@ -944,9 +954,9 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isId': true,
             'isReadOnly': false,
             'hasDefaultValue': true,
-            'type': 'Int',
+            'type': 'String',
             'default': {
-              'name': 'autoincrement',
+              'name': 'uuid(4)',
               'args': [],
             },
             'isGenerated': false,
@@ -979,50 +989,33 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isUpdatedAt': false,
           },
           {
-            'name': 'posts',
-            'kind': 'object',
-            'isList': true,
+            'name': 'password',
+            'kind': 'scalar',
+            'isList': false,
             'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
             'hasDefaultValue': false,
-            'type': 'Post',
-            'relationName': 'PostToUser',
-            'relationFromFields': [],
-            'relationToFields': [],
+            'type': 'String',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
-        ],
-        'primaryKey': null,
-        'uniqueFields': [],
-        'uniqueIndexes': [],
-        'isGenerated': false,
-      },
-      {
-        'name': 'Post',
-        'dbName': null,
-        'fields': [
           {
-            'name': 'id',
+            'name': 'email_address',
             'kind': 'scalar',
             'isList': false,
             'isRequired': true,
-            'isUnique': false,
-            'isId': true,
+            'isUnique': true,
+            'isId': false,
             'isReadOnly': false,
-            'hasDefaultValue': true,
-            'type': 'Int',
-            'default': {
-              'name': 'autoincrement',
-              'args': [],
-            },
+            'hasDefaultValue': false,
+            'type': 'String',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
           {
-            'name': 'name',
+            'name': 'residential_address',
             'kind': 'scalar',
             'isList': false,
             'isRequired': false,
@@ -1035,7 +1028,24 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isUpdatedAt': false,
           },
           {
-            'name': 'date',
+            'name': 'created',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': false,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'DateTime',
+            'default': {
+              'name': 'now',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'updated_at',
             'kind': 'scalar',
             'isList': false,
             'isRequired': false,
@@ -1044,6 +1054,62 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'DateTime',
+            'isGenerated': false,
+            'isUpdatedAt': true,
+          },
+          {
+            'name': 'Investment',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Investment',
+            'relationName': 'InvestmentToUser',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+        ],
+        'primaryKey': null,
+        'uniqueFields': [],
+        'uniqueIndexes': [],
+        'isGenerated': false,
+      },
+      {
+        'name': 'Investment',
+        'dbName': null,
+        'fields': [
+          {
+            'name': 'id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': true,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'String',
+            'default': {
+              'name': 'uuid(4)',
+              'args': [],
+            },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'user_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'String',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1057,22 +1123,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isReadOnly': false,
             'hasDefaultValue': false,
             'type': 'User',
-            'relationName': 'PostToUser',
-            'relationFromFields': ['userId'],
+            'relationName': 'InvestmentToUser',
+            'relationFromFields': ['user_id'],
             'relationToFields': ['id'],
             'isGenerated': false,
             'isUpdatedAt': false,
           },
           {
-            'name': 'userId',
+            'name': 'investment_amount',
             'kind': 'scalar',
             'isList': false,
-            'isRequired': true,
+            'isRequired': false,
             'isUnique': false,
             'isId': false,
-            'isReadOnly': true,
+            'isReadOnly': false,
             'hasDefaultValue': false,
-            'type': 'Int',
+            'type': 'Float',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -1094,7 +1160,15 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         ],
       },
       {
-        'model': 'Post',
+        'model': 'User',
+        'type': 'unique',
+        'isDefinedOnField': true,
+        'fields': [
+          {'name': 'email_address'}
+        ],
+      },
+      {
+        'model': 'Investment',
         'type': 'id',
         'isDefinedOnField': true,
         'fields': [
@@ -1131,7 +1205,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n  output   = "./generated_dart_client/"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id         Int     @id @default(autoincrement())\n  first_name String?\n  last_name  String?\n  posts      Post[]\n}\n\nmodel Post {\n  id     Int       @id @default(autoincrement())\n  name   String?\n  date   DateTime?\n  user   User      @relation(fields: [userId], references: [id])\n  userId Int\n}\n',
+            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String       @id @default(uuid())\n  first_name          String?\n  last_name           String?\n  password            String\n  email_address       String       @unique\n  residential_address String?\n  created             DateTime?    @default(now())\n  updated_at          DateTime?    @updatedAt\n  Investment          Investment[]\n}\n\nmodel Investment {\n  id                String @id @default(uuid())\n  user_id           String\n  user              User   @relation(fields: [user_id], references: [id])\n  investment_amount Float?\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,
@@ -1146,5 +1220,5 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
 
   UserDelegate get user => UserDelegate._(this);
 
-  PostDelegate get post => PostDelegate._(this);
+  InvestmentDelegate get investment => InvestmentDelegate._(this);
 }

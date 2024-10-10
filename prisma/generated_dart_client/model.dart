@@ -2,42 +2,33 @@
 import 'model.dart' as _i1;
 import 'prisma.dart' as _i2;
 
-class Post {
-  const Post({
+class Investment {
+  const Investment({
     this.id,
-    this.name,
-    this.date,
     this.userId,
+    this.investmentAmount,
     this.user,
   });
 
-  factory Post.fromJson(Map json) => Post(
+  factory Investment.fromJson(Map json) => Investment(
         id: json['id'],
-        name: json['name'],
-        date: switch (json['date']) {
-          DateTime value => value,
-          String value => DateTime.parse(value),
-          _ => json['date']
-        },
-        userId: json['userId'],
+        userId: json['user_id'],
+        investmentAmount: json['investment_amount'],
         user: json['user'] is Map ? _i1.User.fromJson(json['user']) : null,
       );
 
-  final int? id;
+  final String? id;
 
-  final String? name;
+  final String? userId;
 
-  final DateTime? date;
-
-  final int? userId;
+  final double? investmentAmount;
 
   final _i1.User? user;
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': name,
-        'date': date?.toIso8601String(),
-        'userId': userId,
+        'user_id': userId,
+        'investment_amount': investmentAmount,
         'user': user?.toJson(),
       };
 }
@@ -47,7 +38,12 @@ class User {
     this.id,
     this.firstName,
     this.lastName,
-    this.posts,
+    this.password,
+    this.emailAddress,
+    this.residentialAddress,
+    this.created,
+    this.updatedAt,
+    this.investment,
     this.$count,
   });
 
@@ -55,20 +51,43 @@ class User {
         id: json['id'],
         firstName: json['first_name'],
         lastName: json['last_name'],
-        posts: (json['posts'] as Iterable?)
-            ?.map((json) => _i1.Post.fromJson(json)),
+        password: json['password'],
+        emailAddress: json['email_address'],
+        residentialAddress: json['residential_address'],
+        created: switch (json['created']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['created']
+        },
+        updatedAt: switch (json['updated_at']) {
+          DateTime value => value,
+          String value => DateTime.parse(value),
+          _ => json['updated_at']
+        },
+        investment: (json['Investment'] as Iterable?)
+            ?.map((json) => _i1.Investment.fromJson(json)),
         $count: json['_count'] is Map
             ? _i2.UserCountOutputType.fromJson(json['_count'])
             : null,
       );
 
-  final int? id;
+  final String? id;
 
   final String? firstName;
 
   final String? lastName;
 
-  final Iterable<_i1.Post>? posts;
+  final String? password;
+
+  final String? emailAddress;
+
+  final String? residentialAddress;
+
+  final DateTime? created;
+
+  final DateTime? updatedAt;
+
+  final Iterable<_i1.Investment>? investment;
 
   final _i2.UserCountOutputType? $count;
 
@@ -76,7 +95,12 @@ class User {
         'id': id,
         'first_name': firstName,
         'last_name': lastName,
-        'posts': posts?.map((e) => e.toJson()),
+        'password': password,
+        'email_address': emailAddress,
+        'residential_address': residentialAddress,
+        'created': created?.toIso8601String(),
+        'updated_at': updatedAt?.toIso8601String(),
+        'Investment': investment?.map((e) => e.toJson()),
         '_count': $count?.toJson(),
       };
 }
