@@ -4,82 +4,92 @@ import 'prisma.dart' as _i2;
 
 class Withdrawal {
   const Withdrawal({
-    this.id,
-    this.investmentId,
+    this.withdrawalId,
     this.description,
     this.amount,
+    this.investmentId,
+    this.userId,
     this.investment,
+    this.user,
   });
 
   factory Withdrawal.fromJson(Map json) => Withdrawal(
-        id: json['id'],
-        investmentId: json['investment_id'],
+        withdrawalId: json['withdrawal_id'],
         description: json['description'],
         amount: json['amount'],
+        investmentId: json['investment_id'],
+        userId: json['user_id'],
         investment: json['investment'] is Map
             ? _i1.Investment.fromJson(json['investment'])
             : null,
+        user: json['user'] is Map ? _i1.User.fromJson(json['user']) : null,
       );
 
-  final String? id;
-
-  final String? investmentId;
+  final String? withdrawalId;
 
   final String? description;
 
   final double? amount;
 
+  final String? investmentId;
+
+  final String? userId;
+
   final _i1.Investment? investment;
 
+  final _i1.User? user;
+
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'investment_id': investmentId,
+        'withdrawal_id': withdrawalId,
         'description': description,
         'amount': amount,
+        'investment_id': investmentId,
+        'user_id': userId,
         'investment': investment?.toJson(),
+        'user': user?.toJson(),
       };
 }
 
 class Investment {
   const Investment({
-    this.id,
+    this.investmentId,
     this.userId,
-    this.investmentAmount,
+    this.amount,
     this.user,
-    this.withdrawal,
+    this.withdrawals,
     this.$count,
   });
 
   factory Investment.fromJson(Map json) => Investment(
-        id: json['id'],
+        investmentId: json['investment_id'],
         userId: json['user_id'],
-        investmentAmount: json['investment_amount'],
+        amount: json['amount'],
         user: json['user'] is Map ? _i1.User.fromJson(json['user']) : null,
-        withdrawal: (json['Withdrawal'] as Iterable?)
+        withdrawals: (json['withdrawals'] as Iterable?)
             ?.map((json) => _i1.Withdrawal.fromJson(json)),
         $count: json['_count'] is Map
             ? _i2.InvestmentCountOutputType.fromJson(json['_count'])
             : null,
       );
 
-  final String? id;
+  final String? investmentId;
 
   final String? userId;
 
-  final double? investmentAmount;
+  final double? amount;
 
   final _i1.User? user;
 
-  final Iterable<_i1.Withdrawal>? withdrawal;
+  final Iterable<_i1.Withdrawal>? withdrawals;
 
   final _i2.InvestmentCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'investment_id': investmentId,
         'user_id': userId,
-        'investment_amount': investmentAmount,
+        'amount': amount,
         'user': user?.toJson(),
-        'Withdrawal': withdrawal?.map((e) => e.toJson()),
+        'withdrawals': withdrawals?.map((e) => e.toJson()),
         '_count': $count?.toJson(),
       };
 }
@@ -117,7 +127,7 @@ class WithDrawalMethod {
 
 class User {
   const User({
-    this.id,
+    this.userId,
     this.firstName,
     this.lastName,
     this.password,
@@ -125,13 +135,14 @@ class User {
     this.residentialAddress,
     this.created,
     this.updatedAt,
-    this.investment,
-    this.withDrawalMethod,
+    this.investments,
+    this.withdrawalMethods,
+    this.withdrawals,
     this.$count,
   });
 
   factory User.fromJson(Map json) => User(
-        id: json['id'],
+        userId: json['user_id'],
         firstName: json['first_name'],
         lastName: json['last_name'],
         password: json['password'],
@@ -147,16 +158,18 @@ class User {
           String value => DateTime.parse(value),
           _ => json['updated_at']
         },
-        investment: (json['Investment'] as Iterable?)
+        investments: (json['investments'] as Iterable?)
             ?.map((json) => _i1.Investment.fromJson(json)),
-        withDrawalMethod: (json['WithDrawalMethod'] as Iterable?)
+        withdrawalMethods: (json['withdrawal_methods'] as Iterable?)
             ?.map((json) => _i1.WithDrawalMethod.fromJson(json)),
+        withdrawals: (json['withdrawals'] as Iterable?)
+            ?.map((json) => _i1.Withdrawal.fromJson(json)),
         $count: json['_count'] is Map
             ? _i2.UserCountOutputType.fromJson(json['_count'])
             : null,
       );
 
-  final String? id;
+  final String? userId;
 
   final String? firstName;
 
@@ -172,14 +185,16 @@ class User {
 
   final DateTime? updatedAt;
 
-  final Iterable<_i1.Investment>? investment;
+  final Iterable<_i1.Investment>? investments;
 
-  final Iterable<_i1.WithDrawalMethod>? withDrawalMethod;
+  final Iterable<_i1.WithDrawalMethod>? withdrawalMethods;
+
+  final Iterable<_i1.Withdrawal>? withdrawals;
 
   final _i2.UserCountOutputType? $count;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'user_id': userId,
         'first_name': firstName,
         'last_name': lastName,
         'password': password,
@@ -187,8 +202,9 @@ class User {
         'residential_address': residentialAddress,
         'created': created?.toIso8601String(),
         'updated_at': updatedAt?.toIso8601String(),
-        'Investment': investment?.map((e) => e.toJson()),
-        'WithDrawalMethod': withDrawalMethod?.map((e) => e.toJson()),
+        'investments': investments?.map((e) => e.toJson()),
+        'withdrawal_methods': withdrawalMethods?.map((e) => e.toJson()),
+        'withdrawals': withdrawals?.map((e) => e.toJson()),
         '_count': $count?.toJson(),
       };
 }

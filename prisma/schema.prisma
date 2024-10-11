@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-    id                  String             @id @default(uuid())
+    user_id             String             @id @default(uuid())
     first_name          String             @default("")
     last_name           String             @default("")
     password            String
@@ -22,28 +22,31 @@ model User {
     residential_address String             @default("")
     created             DateTime?          @default(now())
     updated_at          DateTime?          @updatedAt
-    Investment          Investment[]
-    WithDrawalMethod    WithDrawalMethod[]
+    investments         Investment[]
+    withdrawal_methods  WithDrawalMethod[]
+    withdrawals         Withdrawal[]
 
     @@map("users")
 }
 
 model Investment {
-    id                String       @id @default(uuid())
-    user_id           String
-    user              User?        @relation(fields: [user_id], references: [id])
-    investment_amount Float
-    Withdrawal        Withdrawal[]
+    investment_id String       @id @default(uuid())
+    user_id       String
+    user          User?        @relation(fields: [user_id], references: [user_id])
+    amount        Float        @default(0.0)
+    withdrawals   Withdrawal[]
 
     @@map("investments")
 }
 
 model Withdrawal {
-    id            String      @id @default(uuid())
-    investment_id String
+    withdrawal_id String     @id @default(uuid())
     description   String
     amount        Float
-    investment    Investment? @relation(fields: [investment_id], references: [id])
+    investment_id String
+    investment    Investment @relation(fields: [investment_id], references: [investment_id])
+    user_id       String
+    user          User       @relation(fields: [user_id], references: [user_id])
 
     @@map("withdrawals")
 }
@@ -55,7 +58,7 @@ model WithDrawalMethod {
 
     user_id String @unique
 
-    user User? @relation(fields: [user_id], references: [id])
+    user User? @relation(fields: [user_id], references: [user_id])
 
     @@map("withdrawal_methods")
 }

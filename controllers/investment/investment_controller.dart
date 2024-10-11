@@ -17,14 +17,14 @@ class InvestmentController implements InvestmentControllerHelper {
   @override
   Future<Response> addInvestment(RequestContext context) async {
     try {
-      var payload = Investment.fromJson(await context.request.json());
-      var amount = payload.investmentAmount ?? 0;
-      print("TYPE ${amount.runtimeType}");
+      var payload = await context.request.json();
+      var amount = double.parse(payload['amount']?.toString() ?? "0");
       if (amount <= 0) return this.invalidAmountResponse();
       var user = context.read<User>();
       var investment = await prismaClient.investment.create(
           data: PrismaUnion.$2(InvestmentUncheckedCreateInput(
-              userId: user.id ?? "", investmentAmount: amount)));
+              userId: user.userId ?? "",
+              amount: double.parse(amount.toString()))));
       return this.parseInvestment(investment);
     } catch (e) {
       return Response().asInternalServerError(e);
@@ -36,11 +36,14 @@ class InvestmentController implements InvestmentControllerHelper {
     try {
       var user = context.read<User>();
       var investments = await this.prismaClient.investment.findMany(
-          select:
-              InvestmentSelect(id: true, investmentAmount: true, userId: true),
+          select: InvestmentSelect(
+              withdrawals: PrismaUnion.$1(true),
+              investmentId: true,
+              amount: true,
+              userId: true),
           where: InvestmentWhereInput(
               userId: PrismaUnion.$1(
-                  StringFilter(equals: PrismaUnion.$1(user.id ?? "")))));
+                  StringFilter(equals: PrismaUnion.$1(user.userId ?? "")))));
       return this.parseInvestments(investments.toList());
     } catch (e) {
       return Response().asInternalServerError(e);
@@ -54,10 +57,10 @@ class InvestmentController implements InvestmentControllerHelper {
       var user = context.read<User>();
       var investment = await this.prismaClient.investment.findUnique(
           where: InvestmentWhereUniqueInput(
-              id: investmentId,
+              investmentId: investmentId,
               AND: PrismaUnion.$1(InvestmentWhereInput(
-                  userId: PrismaUnion.$1(
-                      StringFilter(equals: PrismaUnion.$1(user.id ?? "")))))));
+                  userId: PrismaUnion.$1(StringFilter(
+                      equals: PrismaUnion.$1(user.userId ?? "")))))));
       return this.parseInvestment(investment);
     } catch (e) {
       return Response().asInternalServerError(e);
@@ -86,7 +89,7 @@ extension InvestmentControllerExtension on InvestmentController {
       "message": "Successful",
       if (investments.isNotEmpty)
         "total_investment": investments
-            .map((e) => e.investmentAmount)
+            .map((e) => e.amount)
             .toList()
             .reduce((a, b) => (a ?? 0) + (b ?? 0)),
       "data": investments.map((e) {

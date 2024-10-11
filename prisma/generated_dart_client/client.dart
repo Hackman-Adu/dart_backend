@@ -1881,7 +1881,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'dbName': 'users',
         'fields': [
           {
-            'name': 'id',
+            'name': 'user_id',
             'kind': 'scalar',
             'isList': false,
             'isRequired': true,
@@ -1996,7 +1996,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isUpdatedAt': true,
           },
           {
-            'name': 'Investment',
+            'name': 'investments',
             'kind': 'object',
             'isList': true,
             'isRequired': true,
@@ -2012,7 +2012,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isUpdatedAt': false,
           },
           {
-            'name': 'WithDrawalMethod',
+            'name': 'withdrawal_methods',
             'kind': 'object',
             'isList': true,
             'isRequired': true,
@@ -2022,6 +2022,22 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'hasDefaultValue': false,
             'type': 'WithDrawalMethod',
             'relationName': 'UserToWithDrawalMethod',
+            'relationFromFields': [],
+            'relationToFields': [],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'withdrawals',
+            'kind': 'object',
+            'isList': true,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'Withdrawal',
+            'relationName': 'UserToWithdrawal',
             'relationFromFields': [],
             'relationToFields': [],
             'isGenerated': false,
@@ -2038,7 +2054,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'dbName': 'investments',
         'fields': [
           {
-            'name': 'id',
+            'name': 'investment_id',
             'kind': 'scalar',
             'isList': false,
             'isRequired': true,
@@ -2079,25 +2095,26 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'type': 'User',
             'relationName': 'InvestmentToUser',
             'relationFromFields': ['user_id'],
-            'relationToFields': ['id'],
+            'relationToFields': ['user_id'],
             'isGenerated': false,
             'isUpdatedAt': false,
           },
           {
-            'name': 'investment_amount',
+            'name': 'amount',
             'kind': 'scalar',
             'isList': false,
             'isRequired': true,
             'isUnique': false,
             'isId': false,
             'isReadOnly': false,
-            'hasDefaultValue': false,
+            'hasDefaultValue': true,
             'type': 'Float',
+            'default': 0,
             'isGenerated': false,
             'isUpdatedAt': false,
           },
           {
-            'name': 'Withdrawal',
+            'name': 'withdrawals',
             'kind': 'object',
             'isList': true,
             'isRequired': true,
@@ -2123,7 +2140,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'dbName': 'withdrawals',
         'fields': [
           {
-            'name': 'id',
+            'name': 'withdrawal_id',
             'kind': 'scalar',
             'isList': false,
             'isRequired': true,
@@ -2136,19 +2153,6 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
               'name': 'uuid(4)',
               'args': [],
             },
-            'isGenerated': false,
-            'isUpdatedAt': false,
-          },
-          {
-            'name': 'investment_id',
-            'kind': 'scalar',
-            'isList': false,
-            'isRequired': true,
-            'isUnique': false,
-            'isId': false,
-            'isReadOnly': true,
-            'hasDefaultValue': false,
-            'type': 'String',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2179,6 +2183,19 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'isUpdatedAt': false,
           },
           {
+            'name': 'investment_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
             'name': 'investment',
             'kind': 'object',
             'isList': false,
@@ -2190,7 +2207,36 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'type': 'Investment',
             'relationName': 'InvestmentToWithdrawal',
             'relationFromFields': ['investment_id'],
-            'relationToFields': ['id'],
+            'relationToFields': ['investment_id'],
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'user_id',
+            'kind': 'scalar',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': true,
+            'hasDefaultValue': false,
+            'type': 'String',
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'user',
+            'kind': 'object',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': false,
+            'type': 'User',
+            'relationName': 'UserToWithdrawal',
+            'relationFromFields': ['user_id'],
+            'relationToFields': ['user_id'],
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2260,7 +2306,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
             'type': 'User',
             'relationName': 'UserToWithDrawalMethod',
             'relationFromFields': ['user_id'],
-            'relationToFields': ['id'],
+            'relationToFields': ['user_id'],
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2278,7 +2324,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'type': 'id',
         'isDefinedOnField': true,
         'fields': [
-          {'name': 'id'}
+          {'name': 'user_id'}
         ],
       },
       {
@@ -2294,7 +2340,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'type': 'id',
         'isDefinedOnField': true,
         'fields': [
-          {'name': 'id'}
+          {'name': 'investment_id'}
         ],
       },
       {
@@ -2302,7 +2348,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'type': 'id',
         'isDefinedOnField': true,
         'fields': [
-          {'name': 'id'}
+          {'name': 'withdrawal_id'}
         ],
       },
       {
@@ -2351,7 +2397,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                  String             @id @default(uuid())\n  first_name          String             @default("")\n  last_name           String             @default("")\n  password            String\n  email_address       String             @unique\n  residential_address String             @default("")\n  created             DateTime?          @default(now())\n  updated_at          DateTime?          @updatedAt\n  Investment          Investment[]\n  WithDrawalMethod    WithDrawalMethod[]\n\n  @@map("users")\n}\n\nmodel Investment {\n  id                String       @id @default(uuid())\n  user_id           String\n  user              User?        @relation(fields: [user_id], references: [id])\n  investment_amount Float\n  Withdrawal        Withdrawal[]\n\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  id            String      @id @default(uuid())\n  investment_id String\n  description   String\n  amount        Float\n  investment    Investment? @relation(fields: [investment_id], references: [id])\n\n  @@map("withdrawals")\n}\n\nmodel WithDrawalMethod {\n  id String @id @default(uuid())\n\n  name String @default("")\n\n  user_id String @unique\n\n  user User? @relation(fields: [user_id], references: [id])\n\n  @@map("withdrawal_methods")\n}\n',
+            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  user_id             String             @id @default(uuid())\n  first_name          String             @default("")\n  last_name           String             @default("")\n  password            String\n  email_address       String             @unique\n  residential_address String             @default("")\n  created             DateTime?          @default(now())\n  updated_at          DateTime?          @updatedAt\n  investments         Investment[]\n  withdrawal_methods  WithDrawalMethod[]\n  withdrawals         Withdrawal[]\n\n  @@map("users")\n}\n\nmodel Investment {\n  investment_id String       @id @default(uuid())\n  user_id       String\n  user          User?        @relation(fields: [user_id], references: [user_id])\n  amount        Float        @default(0.0)\n  withdrawals   Withdrawal[]\n\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  withdrawal_id String      @id @default(uuid())\n  description   String\n  amount        Float\n  investment_id String\n  investment    Investment? @relation(fields: [investment_id], references: [investment_id])\n  user_id       String\n  user          User        @relation(fields: [user_id], references: [user_id])\n\n  @@map("withdrawals")\n}\n\nmodel WithDrawalMethod {\n  id String @id @default(uuid())\n\n  name String @default("")\n\n  user_id String @unique\n\n  user User? @relation(fields: [user_id], references: [user_id])\n\n  @@map("withdrawal_methods")\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,

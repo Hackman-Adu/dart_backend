@@ -34,7 +34,8 @@ class UserController implements UserControllerHelper {
       }
       var results = await this.prismaClient.user.create(
           include: UserInclude(
-              $count: PrismaUnion.$1(false), investment: PrismaUnion.$1(false)),
+              $count: PrismaUnion.$1(false),
+              investments: PrismaUnion.$1(false)),
           data: PrismaUnion.$1(UserCreateInput(
               emailAddress: payload.emailAddress ?? "",
               password: hashPassword(payload.password))));
@@ -79,7 +80,7 @@ class UserController implements UserControllerHelper {
               lastName: PrismaUnion.$1(payload.lastName ?? user.lastName ?? ""),
               firstName:
                   PrismaUnion.$1(payload.firstName ?? user.firstName ?? ""))),
-          where: UserWhereUniqueInput(id: user.id));
+          where: UserWhereUniqueInput(userId: user.userId));
       return this.parseUser(updatedUser);
     } catch (e) {
       return Response().asInternalServerError(e);
