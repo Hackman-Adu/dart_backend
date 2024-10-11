@@ -1,6 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
 
-import '../../../controllers/user/user_controller.dart';
+import '../../../controllers/user_controller.dart';
 import '../../../helpers/middlewares.dart';
 import '../../../prisma/generated_dart_client/client.dart';
 

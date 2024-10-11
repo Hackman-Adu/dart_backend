@@ -336,16 +336,16 @@ class UserNullableRelationFilter
       };
 }
 
-class InvestmentNullableRelationFilter
+class InvestmentRelationFilter
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const InvestmentNullableRelationFilter({
+  const InvestmentRelationFilter({
     this.$is,
     this.isNot,
   });
 
-  final _i1.PrismaUnion<_i2.InvestmentWhereInput, _i1.PrismaNull>? $is;
+  final _i2.InvestmentWhereInput? $is;
 
-  final _i1.PrismaUnion<_i2.InvestmentWhereInput, _i1.PrismaNull>? isNot;
+  final _i2.InvestmentWhereInput? isNot;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -404,8 +404,8 @@ class WithdrawalWhereInput
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
 
-  final _i1.PrismaUnion<_i2.InvestmentNullableRelationFilter,
-      _i1.PrismaUnion<_i2.InvestmentWhereInput, _i1.PrismaNull>>? investment;
+  final _i1.PrismaUnion<_i2.InvestmentRelationFilter, _i2.InvestmentWhereInput>?
+      investment;
 
   final _i1.PrismaUnion<_i2.UserRelationFilter, _i2.UserWhereInput>? user;
 
@@ -735,12 +735,9 @@ class InvestmentUserArgs implements _i1.JsonConvertible<Map<String, dynamic>> {
 class WithdrawalInvestmentArgs
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const WithdrawalInvestmentArgs({
-    this.where,
     this.select,
     this.include,
   });
-
-  final _i2.InvestmentWhereInput? where;
 
   final _i2.InvestmentSelect? select;
 
@@ -748,7 +745,6 @@ class WithdrawalInvestmentArgs
 
   @override
   Map<String, dynamic> toJson() => {
-        'where': where,
         'select': select,
         'include': include,
       };
@@ -1047,8 +1043,8 @@ class WithdrawalWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
 
-  final _i1.PrismaUnion<_i2.InvestmentNullableRelationFilter,
-      _i1.PrismaUnion<_i2.InvestmentWhereInput, _i1.PrismaNull>>? investment;
+  final _i1.PrismaUnion<_i2.InvestmentRelationFilter, _i2.InvestmentWhereInput>?
+      investment;
 
   final _i1.PrismaUnion<_i2.UserRelationFilter, _i2.UserWhereInput>? user;
 
@@ -2699,7 +2695,7 @@ class WithdrawalCreateWithoutUserInput
     this.withdrawalId,
     required this.description,
     required this.amount,
-    this.investment,
+    required this.investment,
   });
 
   final String? withdrawalId;
@@ -2708,7 +2704,7 @@ class WithdrawalCreateWithoutUserInput
 
   final double amount;
 
-  final _i2.InvestmentCreateNestedOneWithoutWithdrawalsInput? investment;
+  final _i2.InvestmentCreateNestedOneWithoutWithdrawalsInput investment;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -4630,14 +4626,12 @@ class InvestmentUpdateToOneWithWhereWithoutWithdrawalsInput
       };
 }
 
-class InvestmentUpdateOneWithoutWithdrawalsNestedInput
+class InvestmentUpdateOneRequiredWithoutWithdrawalsNestedInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
-  const InvestmentUpdateOneWithoutWithdrawalsNestedInput({
+  const InvestmentUpdateOneRequiredWithoutWithdrawalsNestedInput({
     this.create,
     this.connectOrCreate,
     this.upsert,
-    this.disconnect,
-    this.delete,
     this.connect,
     this.update,
   });
@@ -4648,10 +4642,6 @@ class InvestmentUpdateOneWithoutWithdrawalsNestedInput
   final _i2.InvestmentCreateOrConnectWithoutWithdrawalsInput? connectOrCreate;
 
   final _i2.InvestmentUpsertWithoutWithdrawalsInput? upsert;
-
-  final _i1.PrismaUnion<bool, _i2.InvestmentWhereInput>? disconnect;
-
-  final _i1.PrismaUnion<bool, _i2.InvestmentWhereInput>? delete;
 
   final _i2.InvestmentWhereUniqueInput? connect;
 
@@ -4665,8 +4655,6 @@ class InvestmentUpdateOneWithoutWithdrawalsNestedInput
         'create': create,
         'connectOrCreate': connectOrCreate,
         'upsert': upsert,
-        'disconnect': disconnect,
-        'delete': delete,
         'connect': connect,
         'update': update,
       };
@@ -4689,7 +4677,8 @@ class WithdrawalUpdateWithoutUserInput
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
-  final _i2.InvestmentUpdateOneWithoutWithdrawalsNestedInput? investment;
+  final _i2.InvestmentUpdateOneRequiredWithoutWithdrawalsNestedInput?
+      investment;
 
   @override
   Map<String, dynamic> toJson() => {
@@ -7073,7 +7062,7 @@ class WithdrawalCreateInput
     this.withdrawalId,
     required this.description,
     required this.amount,
-    this.investment,
+    required this.investment,
     required this.user,
   });
 
@@ -7083,7 +7072,7 @@ class WithdrawalCreateInput
 
   final double amount;
 
-  final _i2.InvestmentCreateNestedOneWithoutWithdrawalsInput? investment;
+  final _i2.InvestmentCreateNestedOneWithoutWithdrawalsInput investment;
 
   final _i2.UserCreateNestedOneWithoutWithdrawalsInput user;
 
@@ -7175,7 +7164,8 @@ class WithdrawalUpdateInput
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
-  final _i2.InvestmentUpdateOneWithoutWithdrawalsNestedInput? investment;
+  final _i2.InvestmentUpdateOneRequiredWithoutWithdrawalsNestedInput?
+      investment;
 
   final _i2.UserUpdateOneRequiredWithoutWithdrawalsNestedInput? user;
 

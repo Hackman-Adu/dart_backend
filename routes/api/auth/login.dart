@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import '../../../controllers/user/user_controller.dart';
+import '../../../controllers/user_controller.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final request = context.request;

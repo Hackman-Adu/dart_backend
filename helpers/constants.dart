@@ -19,9 +19,9 @@ bool equalPassword(String? input, String? hashedPassword) =>
 
 SecretKey get jwtSecretKey => SecretKey(env['JWT_SECRET_KEY'].toString());
 
-String jwtToken(dynamic payload) {
+String authToken(dynamic payload) {
   var jwt = JWT(payload);
   return jwt.sign(jwtSecretKey, expiresIn: Duration(days: 1));
 }
 
-JWT verifyToken(String token) => JWT.verify(token, jwtSecretKey);
+JWT verifyAuthToken(String token) => JWT.verify(token, jwtSecretKey);

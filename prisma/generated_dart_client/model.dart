@@ -89,7 +89,7 @@ class Investment {
         'user_id': userId,
         'amount': amount,
         'user': user?.toJson(),
-        'withdrawals': withdrawals?.map((e) => e.toJson()),
+        'withdrawals': withdrawals?.map((e) => e.toJson()).toList(),
         '_count': $count?.toJson(),
       };
 }

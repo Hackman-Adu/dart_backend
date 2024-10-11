@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
 
-import '../../../controllers/investment/investment_controller.dart';
+import '../../../controllers/investment_controller.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final request = context.request;
@@ -11,7 +11,9 @@ Future<Response> onRequest(RequestContext context) async {
     case HttpMethod.post:
       return controller.addInvestment(context);
     case HttpMethod.get:
-      return controller.getUserInvestments(context);
+      var investmentId = request.uri.queryParameters['id'];
+      if (investmentId == null) return controller.getUserInvestments(context);
+      return controller.getInvestmentById(context, investmentId);
     default:
       return Response(statusCode: HttpStatus.methodNotAllowed);
   }

@@ -18,7 +18,7 @@ Handler authMiddleWare(Handler handler) {
           body: {"message": "Provide bearer token"});
     }
     try {
-      jwt = verifyToken(bearerToken);
+      jwt = verifyAuthToken(bearerToken);
     } catch (e) {
       return Response.json(
           statusCode: HttpStatus.badRequest,
