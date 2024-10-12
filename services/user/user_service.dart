@@ -19,11 +19,6 @@ class UserService implements UserServiceManager {
   Future<User> login(RequestContext context) async {
     var payload = User.fromJson(await context.request.json() ?? {});
     var user = await this.prismaClient.user.findUnique(
-        include: UserInclude(
-            investments: PrismaUnion.$1(false),
-            $count: PrismaUnion.$1(false),
-            withdrawals: PrismaUnion.$1(false),
-            withdrawalMethod: PrismaUnion.$1(false)),
         where: UserWhereUniqueInput(emailAddress: payload.emailAddress));
     if (user == null) throw Failure(HttpStatus.notFound, "User not found");
     if (!equalPassword(payload.password, user.password))
@@ -45,15 +40,10 @@ class UserService implements UserServiceManager {
       throw Failure(HttpStatus.conflict, "User already exists");
     }
     var createdUser = await this.prismaClient.user.create(
-        include: UserInclude(
-            investments: PrismaUnion.$1(false),
-            $count: PrismaUnion.$1(false),
-            withdrawals: PrismaUnion.$1(false),
-            withdrawalMethod: PrismaUnion.$1(false)),
         data: PrismaUnion.$1(UserCreateInput(
             emailAddress: payload.emailAddress ?? "",
             password: hashPassword(payload.password))));
-    return createdUser;
+    return User.fromJson(createdUser.toJson().removeKey("password"));
   }
 
   @override
@@ -64,11 +54,6 @@ class UserService implements UserServiceManager {
     if (user == null) throw Failure(HttpStatus.notFound, "User not found");
     var payload = User.fromJson(await request.json());
     var updatedUser = await prismaClient.user.update(
-        include: UserInclude(
-            investments: PrismaUnion.$1(false),
-            $count: PrismaUnion.$1(false),
-            withdrawals: PrismaUnion.$1(false),
-            withdrawalMethod: PrismaUnion.$1(false)),
         data: PrismaUnion.$2(UserUncheckedUpdateInput(
             residentialAddress: PrismaUnion.$2(StringFieldUpdateOperationsInput(
                 set: payload.residentialAddress ?? user.residentialAddress)),
@@ -77,7 +62,7 @@ class UserService implements UserServiceManager {
             firstName: PrismaUnion.$2(StringFieldUpdateOperationsInput(
                 set: payload.firstName ?? user.firstName)))),
         where: UserWhereUniqueInput(userId: user.userId));
-    return updatedUser;
+    return User.fromJson(updatedUser?.toJson().removeKey("password") ?? {});
   }
 
   @override
@@ -91,13 +76,8 @@ class UserService implements UserServiceManager {
   @override
   Future<User?> getUser(RequestContext context) async {
     var user = context.read<User>();
-    var queryUser = await prismaClient.user.findUnique(
-        include: UserInclude(
-            investments: PrismaUnion.$1(false),
-            $count: PrismaUnion.$1(false),
-            withdrawals: PrismaUnion.$1(false),
-            withdrawalMethod: PrismaUnion.$1(false)),
-        where: UserWhereUniqueInput(userId: user.userId));
+    var queryUser = await prismaClient.user
+        .findUnique(where: UserWhereUniqueInput(userId: user.userId));
     if (queryUser == null) throw Failure(HttpStatus.notFound, "User not found");
     return queryUser;
   }

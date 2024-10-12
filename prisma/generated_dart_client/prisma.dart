@@ -232,6 +232,62 @@ class DateTimeNullableFilter
       };
 }
 
+class NestedEnumInvestmentTypeFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedEnumInvestmentTypeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.not,
+  });
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i1.Reference<_i3.InvestmentType>>?
+      equals;
+
+  final Iterable<_i3.InvestmentType>? $in;
+
+  final Iterable<_i3.InvestmentType>? notIn;
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i2.NestedEnumInvestmentTypeFilter>?
+      not;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'not': not,
+      };
+}
+
+class EnumInvestmentTypeFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const EnumInvestmentTypeFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.not,
+  });
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i1.Reference<_i3.InvestmentType>>?
+      equals;
+
+  final Iterable<_i3.InvestmentType>? $in;
+
+  final Iterable<_i3.InvestmentType>? notIn;
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i2.NestedEnumInvestmentTypeFilter>?
+      not;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'not': not,
+      };
+}
+
 class NestedFloatFilter implements _i1.JsonConvertible<Map<String, dynamic>> {
   const NestedFloatFilter({
     this.equals,
@@ -431,6 +487,7 @@ class InvestmentWhereInput
     this.OR,
     this.NOT,
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -448,6 +505,9 @@ class InvestmentWhereInput
       Iterable<_i2.InvestmentWhereInput>>? NOT;
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? investmentId;
+
+  final _i1.PrismaUnion<_i2.EnumInvestmentTypeFilter, _i3.InvestmentType>?
+      investmentType;
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
 
@@ -469,6 +529,7 @@ class InvestmentWhereInput
         'OR': OR,
         'NOT': NOT,
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -1022,6 +1083,7 @@ class InvestmentOrderByWithRelationInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentOrderByWithRelationInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -1031,6 +1093,8 @@ class InvestmentOrderByWithRelationInput
   });
 
   final _i2.SortOrder? investmentId;
+
+  final _i2.SortOrder? investmentType;
 
   final _i2.SortOrder? userId;
 
@@ -1047,6 +1111,7 @@ class InvestmentOrderByWithRelationInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -1257,6 +1322,7 @@ class InvestmentWhereUniqueInput
     this.AND,
     this.OR,
     this.NOT,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -1274,6 +1340,9 @@ class InvestmentWhereUniqueInput
 
   final _i1.PrismaUnion<_i2.InvestmentWhereInput,
       Iterable<_i2.InvestmentWhereInput>>? NOT;
+
+  final _i1.PrismaUnion<_i2.EnumInvestmentTypeFilter, _i3.InvestmentType>?
+      investmentType;
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
 
@@ -1295,6 +1364,7 @@ class InvestmentWhereUniqueInput
         'AND': AND,
         'OR': OR,
         'NOT': NOT,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -1306,6 +1376,7 @@ class InvestmentWhereUniqueInput
 
 enum InvestmentScalar<T> implements _i1.PrismaEnum, _i1.Reference<T> {
   investmentId<String>('investment_id', 'Investment'),
+  investmentType<_i3.InvestmentType>('investment_type', 'Investment'),
   userId<String>('user_id', 'Investment'),
   amount<double>('amount', 'Investment'),
   created<DateTime>('created', 'Investment'),
@@ -1548,6 +1619,7 @@ class UserInclude implements _i1.JsonConvertible<Map<String, dynamic>> {
 class InvestmentSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentSelect({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -1558,6 +1630,8 @@ class InvestmentSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
   });
 
   final bool? investmentId;
+
+  final bool? investmentType;
 
   final bool? userId;
 
@@ -1576,6 +1650,7 @@ class InvestmentSelect implements _i1.JsonConvertible<Map<String, dynamic>> {
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -1977,6 +2052,7 @@ class InvestmentUncheckedCreateWithoutUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedCreateWithoutUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -1984,6 +2060,8 @@ class InvestmentUncheckedCreateWithoutUserInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final double? amount;
 
@@ -1997,6 +2075,7 @@ class InvestmentUncheckedCreateWithoutUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -2027,12 +2106,15 @@ class InvestmentCreateManyUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCreateManyUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final double? amount;
 
@@ -2043,6 +2125,7 @@ class InvestmentCreateManyUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -2285,6 +2368,7 @@ class InvestmentCreateWithoutUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCreateWithoutUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -2292,6 +2376,8 @@ class InvestmentCreateWithoutUserInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final double? amount;
 
@@ -2304,6 +2390,7 @@ class InvestmentCreateWithoutUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -2616,6 +2703,7 @@ class InvestmentCreateWithoutWithdrawalsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCreateWithoutWithdrawalsInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -2623,6 +2711,8 @@ class InvestmentCreateWithoutWithdrawalsInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final double? amount;
 
@@ -2635,6 +2725,7 @@ class InvestmentCreateWithoutWithdrawalsInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -2646,6 +2737,7 @@ class InvestmentUncheckedCreateWithoutWithdrawalsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedCreateWithoutWithdrawalsInput({
     this.investmentId,
+    this.investmentType,
     required this.userId,
     this.amount,
     this.created,
@@ -2653,6 +2745,8 @@ class InvestmentUncheckedCreateWithoutWithdrawalsInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final String userId;
 
@@ -2665,6 +2759,7 @@ class InvestmentUncheckedCreateWithoutWithdrawalsInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -2949,6 +3044,16 @@ class NullableDateTimeFieldUpdateOperationsInput
   const NullableDateTimeFieldUpdateOperationsInput({this.set});
 
   final _i1.PrismaUnion<DateTime, _i1.PrismaNull>? set;
+
+  @override
+  Map<String, dynamic> toJson() => {'set': set};
+}
+
+class EnumInvestmentTypeFieldUpdateOperationsInput
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const EnumInvestmentTypeFieldUpdateOperationsInput({this.set});
+
+  final _i3.InvestmentType? set;
 
   @override
   Map<String, dynamic> toJson() => {'set': set};
@@ -3427,6 +3532,7 @@ class InvestmentUncheckedUpdateWithoutUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedUpdateWithoutUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -3435,6 +3541,9 @@ class InvestmentUncheckedUpdateWithoutUserInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -3454,6 +3563,7 @@ class InvestmentUncheckedUpdateWithoutUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -3487,6 +3597,7 @@ class InvestmentScalarWhereInput
     this.OR,
     this.NOT,
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -3502,6 +3613,9 @@ class InvestmentScalarWhereInput
       Iterable<_i2.InvestmentScalarWhereInput>>? NOT;
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? investmentId;
+
+  final _i1.PrismaUnion<_i2.EnumInvestmentTypeFilter, _i3.InvestmentType>?
+      investmentType;
 
   final _i1.PrismaUnion<_i2.StringFilter, String>? userId;
 
@@ -3519,6 +3633,7 @@ class InvestmentScalarWhereInput
         'OR': OR,
         'NOT': NOT,
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -3530,6 +3645,7 @@ class InvestmentUpdateManyMutationInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUpdateManyMutationInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -3537,6 +3653,9 @@ class InvestmentUpdateManyMutationInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -3553,6 +3672,7 @@ class InvestmentUpdateManyMutationInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -3563,6 +3683,7 @@ class InvestmentUncheckedUpdateManyWithoutUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedUpdateManyWithoutUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -3570,6 +3691,9 @@ class InvestmentUncheckedUpdateManyWithoutUserInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -3586,6 +3710,7 @@ class InvestmentUncheckedUpdateManyWithoutUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -3992,6 +4117,7 @@ class InvestmentUpdateWithoutUserInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUpdateWithoutUserInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -4000,6 +4126,9 @@ class InvestmentUpdateWithoutUserInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -4018,6 +4147,7 @@ class InvestmentUpdateWithoutUserInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -4483,6 +4613,7 @@ class InvestmentUpdateWithoutWithdrawalsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUpdateWithoutWithdrawalsInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -4491,6 +4622,9 @@ class InvestmentUpdateWithoutWithdrawalsInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -4509,6 +4643,7 @@ class InvestmentUpdateWithoutWithdrawalsInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -4520,6 +4655,7 @@ class InvestmentUncheckedUpdateWithoutWithdrawalsInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedUpdateWithoutWithdrawalsInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -4528,6 +4664,9 @@ class InvestmentUncheckedUpdateWithoutWithdrawalsInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
 
@@ -4546,6 +4685,7 @@ class InvestmentUncheckedUpdateWithoutWithdrawalsInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6111,6 +6251,7 @@ class InvestmentCreateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCreateInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -6119,6 +6260,8 @@ class InvestmentCreateInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final double? amount;
 
@@ -6133,6 +6276,7 @@ class InvestmentCreateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -6145,6 +6289,7 @@ class InvestmentUncheckedCreateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedCreateInput({
     this.investmentId,
+    this.investmentType,
     required this.userId,
     this.amount,
     this.created,
@@ -6153,6 +6298,8 @@ class InvestmentUncheckedCreateInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final String userId;
 
@@ -6168,6 +6315,7 @@ class InvestmentUncheckedCreateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6180,6 +6328,7 @@ class InvestmentCreateManyInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCreateManyInput({
     this.investmentId,
+    this.investmentType,
     required this.userId,
     this.amount,
     this.created,
@@ -6187,6 +6336,8 @@ class InvestmentCreateManyInput
   });
 
   final String? investmentId;
+
+  final _i3.InvestmentType? investmentType;
 
   final String userId;
 
@@ -6199,6 +6350,7 @@ class InvestmentCreateManyInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6210,6 +6362,7 @@ class InvestmentUpdateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUpdateInput({
     this.investmentId,
+    this.investmentType,
     this.amount,
     this.created,
     this.updatedAt,
@@ -6219,6 +6372,9 @@ class InvestmentUpdateInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<double, _i2.FloatFieldUpdateOperationsInput>? amount;
 
@@ -6239,6 +6395,7 @@ class InvestmentUpdateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'amount': amount,
         'created': created,
         'updated_at': updatedAt,
@@ -6251,6 +6408,7 @@ class InvestmentUncheckedUpdateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedUpdateInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6260,6 +6418,9 @@ class InvestmentUncheckedUpdateInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
 
@@ -6281,6 +6442,7 @@ class InvestmentUncheckedUpdateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6293,6 +6455,7 @@ class InvestmentUncheckedUpdateManyInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentUncheckedUpdateManyInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6301,6 +6464,9 @@ class InvestmentUncheckedUpdateManyInput
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>?
       investmentId;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.EnumInvestmentTypeFieldUpdateOperationsInput>? investmentType;
 
   final _i1.PrismaUnion<String, _i2.StringFieldUpdateOperationsInput>? userId;
 
@@ -6319,6 +6485,7 @@ class InvestmentUncheckedUpdateManyInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6329,6 +6496,7 @@ class InvestmentUncheckedUpdateManyInput
 class InvestmentCountAggregateOutputType {
   const InvestmentCountAggregateOutputType({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6339,6 +6507,7 @@ class InvestmentCountAggregateOutputType {
   factory InvestmentCountAggregateOutputType.fromJson(Map json) =>
       InvestmentCountAggregateOutputType(
         investmentId: json['investment_id'],
+        investmentType: json['investment_type'],
         userId: json['user_id'],
         amount: json['amount'],
         created: json['created'],
@@ -6347,6 +6516,8 @@ class InvestmentCountAggregateOutputType {
       );
 
   final int? investmentId;
+
+  final int? investmentType;
 
   final int? userId;
 
@@ -6360,6 +6531,7 @@ class InvestmentCountAggregateOutputType {
 
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6393,6 +6565,7 @@ class InvestmentSumAggregateOutputType {
 class InvestmentMinAggregateOutputType {
   const InvestmentMinAggregateOutputType({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6402,6 +6575,10 @@ class InvestmentMinAggregateOutputType {
   factory InvestmentMinAggregateOutputType.fromJson(Map json) =>
       InvestmentMinAggregateOutputType(
         investmentId: json['investment_id'],
+        investmentType: json['investment_type'] != null
+            ? _i3.InvestmentType.values
+                .firstWhere((e) => e.name == json['investment_type'])
+            : null,
         userId: json['user_id'],
         amount: json['amount'],
         created: switch (json['created']) {
@@ -6418,6 +6595,8 @@ class InvestmentMinAggregateOutputType {
 
   final String? investmentId;
 
+  final _i3.InvestmentType? investmentType;
+
   final String? userId;
 
   final double? amount;
@@ -6428,6 +6607,7 @@ class InvestmentMinAggregateOutputType {
 
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType?.name,
         'user_id': userId,
         'amount': amount,
         'created': created?.toIso8601String(),
@@ -6438,6 +6618,7 @@ class InvestmentMinAggregateOutputType {
 class InvestmentMaxAggregateOutputType {
   const InvestmentMaxAggregateOutputType({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6447,6 +6628,10 @@ class InvestmentMaxAggregateOutputType {
   factory InvestmentMaxAggregateOutputType.fromJson(Map json) =>
       InvestmentMaxAggregateOutputType(
         investmentId: json['investment_id'],
+        investmentType: json['investment_type'] != null
+            ? _i3.InvestmentType.values
+                .firstWhere((e) => e.name == json['investment_type'])
+            : null,
         userId: json['user_id'],
         amount: json['amount'],
         created: switch (json['created']) {
@@ -6463,6 +6648,8 @@ class InvestmentMaxAggregateOutputType {
 
   final String? investmentId;
 
+  final _i3.InvestmentType? investmentType;
+
   final String? userId;
 
   final double? amount;
@@ -6473,6 +6660,7 @@ class InvestmentMaxAggregateOutputType {
 
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType?.name,
         'user_id': userId,
         'amount': amount,
         'created': created?.toIso8601String(),
@@ -6483,6 +6671,7 @@ class InvestmentMaxAggregateOutputType {
 class InvestmentGroupByOutputType {
   const InvestmentGroupByOutputType({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6497,6 +6686,10 @@ class InvestmentGroupByOutputType {
   factory InvestmentGroupByOutputType.fromJson(Map json) =>
       InvestmentGroupByOutputType(
         investmentId: json['investment_id'],
+        investmentType: json['investment_type'] != null
+            ? _i3.InvestmentType.values
+                .firstWhere((e) => e.name == json['investment_type'])
+            : null,
         userId: json['user_id'],
         amount: json['amount'],
         created: switch (json['created']) {
@@ -6528,6 +6721,8 @@ class InvestmentGroupByOutputType {
 
   final String? investmentId;
 
+  final _i3.InvestmentType? investmentType;
+
   final String? userId;
 
   final double? amount;
@@ -6548,6 +6743,7 @@ class InvestmentGroupByOutputType {
 
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType?.name,
         'user_id': userId,
         'amount': amount,
         'created': created?.toIso8601String(),
@@ -6564,6 +6760,7 @@ class InvestmentCountOrderByAggregateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCountOrderByAggregateInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6571,6 +6768,8 @@ class InvestmentCountOrderByAggregateInput
   });
 
   final _i2.SortOrder? investmentId;
+
+  final _i2.SortOrder? investmentType;
 
   final _i2.SortOrder? userId;
 
@@ -6583,6 +6782,7 @@ class InvestmentCountOrderByAggregateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6604,6 +6804,7 @@ class InvestmentMaxOrderByAggregateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentMaxOrderByAggregateInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6611,6 +6812,8 @@ class InvestmentMaxOrderByAggregateInput
   });
 
   final _i2.SortOrder? investmentId;
+
+  final _i2.SortOrder? investmentType;
 
   final _i2.SortOrder? userId;
 
@@ -6623,6 +6826,7 @@ class InvestmentMaxOrderByAggregateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6634,6 +6838,7 @@ class InvestmentMinOrderByAggregateInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentMinOrderByAggregateInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6641,6 +6846,8 @@ class InvestmentMinOrderByAggregateInput
   });
 
   final _i2.SortOrder? investmentId;
+
+  final _i2.SortOrder? investmentType;
 
   final _i2.SortOrder? userId;
 
@@ -6653,6 +6860,7 @@ class InvestmentMinOrderByAggregateInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6674,6 +6882,7 @@ class InvestmentOrderByWithAggregationInput
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentOrderByWithAggregationInput({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6686,6 +6895,8 @@ class InvestmentOrderByWithAggregationInput
   });
 
   final _i2.SortOrder? investmentId;
+
+  final _i2.SortOrder? investmentType;
 
   final _i2.SortOrder? userId;
 
@@ -6708,6 +6919,7 @@ class InvestmentOrderByWithAggregationInput
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6717,6 +6929,86 @@ class InvestmentOrderByWithAggregationInput
         '_max': $max,
         '_min': $min,
         '_sum': $sum,
+      };
+}
+
+class NestedEnumInvestmentTypeWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const NestedEnumInvestmentTypeWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i1.Reference<_i3.InvestmentType>>?
+      equals;
+
+  final Iterable<_i3.InvestmentType>? $in;
+
+  final Iterable<_i3.InvestmentType>? notIn;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.NestedEnumInvestmentTypeWithAggregatesFilter>? not;
+
+  final _i2.NestedIntFilter? $count;
+
+  final _i2.NestedEnumInvestmentTypeFilter? $min;
+
+  final _i2.NestedEnumInvestmentTypeFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
+      };
+}
+
+class EnumInvestmentTypeWithAggregatesFilter
+    implements _i1.JsonConvertible<Map<String, dynamic>> {
+  const EnumInvestmentTypeWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  final _i1.PrismaUnion<_i3.InvestmentType, _i1.Reference<_i3.InvestmentType>>?
+      equals;
+
+  final Iterable<_i3.InvestmentType>? $in;
+
+  final Iterable<_i3.InvestmentType>? notIn;
+
+  final _i1.PrismaUnion<_i3.InvestmentType,
+      _i2.NestedEnumInvestmentTypeWithAggregatesFilter>? not;
+
+  final _i2.NestedIntFilter? $count;
+
+  final _i2.NestedEnumInvestmentTypeFilter? $min;
+
+  final _i2.NestedEnumInvestmentTypeFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'equals': equals,
+        'in': $in,
+        'notIn': notIn,
+        'not': not,
+        '_count': $count,
+        '_min': $min,
+        '_max': $max,
       };
 }
 
@@ -6851,6 +7143,7 @@ class InvestmentScalarWhereWithAggregatesInput
     this.OR,
     this.NOT,
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6866,6 +7159,9 @@ class InvestmentScalarWhereWithAggregatesInput
       Iterable<_i2.InvestmentScalarWhereWithAggregatesInput>>? NOT;
 
   final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? investmentId;
+
+  final _i1.PrismaUnion<_i2.EnumInvestmentTypeWithAggregatesFilter,
+      _i3.InvestmentType>? investmentType;
 
   final _i1.PrismaUnion<_i2.StringWithAggregatesFilter, String>? userId;
 
@@ -6883,6 +7179,7 @@ class InvestmentScalarWhereWithAggregatesInput
         'OR': OR,
         'NOT': NOT,
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6894,6 +7191,7 @@ class InvestmentCountAggregateOutputTypeSelect
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentCountAggregateOutputTypeSelect({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6902,6 +7200,8 @@ class InvestmentCountAggregateOutputTypeSelect
   });
 
   final bool? investmentId;
+
+  final bool? investmentType;
 
   final bool? userId;
 
@@ -6916,6 +7216,7 @@ class InvestmentCountAggregateOutputTypeSelect
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -6978,6 +7279,7 @@ class InvestmentMinAggregateOutputTypeSelect
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentMinAggregateOutputTypeSelect({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -6985,6 +7287,8 @@ class InvestmentMinAggregateOutputTypeSelect
   });
 
   final bool? investmentId;
+
+  final bool? investmentType;
 
   final bool? userId;
 
@@ -6997,6 +7301,7 @@ class InvestmentMinAggregateOutputTypeSelect
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -7018,6 +7323,7 @@ class InvestmentMaxAggregateOutputTypeSelect
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentMaxAggregateOutputTypeSelect({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -7025,6 +7331,8 @@ class InvestmentMaxAggregateOutputTypeSelect
   });
 
   final bool? investmentId;
+
+  final bool? investmentType;
 
   final bool? userId;
 
@@ -7037,6 +7345,7 @@ class InvestmentMaxAggregateOutputTypeSelect
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,
@@ -7058,6 +7367,7 @@ class InvestmentGroupByOutputTypeSelect
     implements _i1.JsonConvertible<Map<String, dynamic>> {
   const InvestmentGroupByOutputTypeSelect({
     this.investmentId,
+    this.investmentType,
     this.userId,
     this.amount,
     this.created,
@@ -7070,6 +7380,8 @@ class InvestmentGroupByOutputTypeSelect
   });
 
   final bool? investmentId;
+
+  final bool? investmentType;
 
   final bool? userId;
 
@@ -7092,6 +7404,7 @@ class InvestmentGroupByOutputTypeSelect
   @override
   Map<String, dynamic> toJson() => {
         'investment_id': investmentId,
+        'investment_type': investmentType,
         'user_id': userId,
         'amount': amount,
         'created': created,

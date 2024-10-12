@@ -1892,7 +1892,25 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
           },
         ],
         'dbName': null,
-      }
+      },
+      {
+        'name': 'InvestmentType',
+        'values': [
+          {
+            'name': 'NORMAL',
+            'dbName': null,
+          },
+          {
+            'name': 'ADVANCE',
+            'dbName': null,
+          },
+          {
+            'name': 'MILD',
+            'dbName': null,
+          },
+        ],
+        'dbName': null,
+      },
     ],
     'models': [
       {
@@ -2086,6 +2104,20 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
               'name': 'uuid(4)',
               'args': [],
             },
+            'isGenerated': false,
+            'isUpdatedAt': false,
+          },
+          {
+            'name': 'investment_type',
+            'kind': 'enum',
+            'isList': false,
+            'isRequired': true,
+            'isUnique': false,
+            'isId': false,
+            'isReadOnly': false,
+            'hasDefaultValue': true,
+            'type': 'InvestmentType',
+            'default': 'NORMAL',
             'isGenerated': false,
             'isUpdatedAt': false,
           },
@@ -2423,7 +2455,8 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         'type': 'normal',
         'isDefinedOnField': false,
         'fields': [
-          {'name': 'user_id'}
+          {'name': 'user_id'},
+          {'name': 'investment_id'},
         ],
       },
       {
@@ -2489,7 +2522,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
   @override
   get $engine => _engine ??= _i5.BinaryEngine(
         schema:
-            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  user_id             String            @id @default(uuid())\n  first_name          String            @default("")\n  last_name           String            @default("")\n  password            String\n  email_address       String            @unique\n  residential_address String            @default("")\n  created             DateTime?         @default(now())\n  updated_at          DateTime?         @updatedAt\n  investments         Investment[]\n  withdrawal_method   WithDrawalMethod?\n  withdrawals         Withdrawal[]\n\n  @@index([user_id, email_address])\n  @@map("users")\n}\n\nmodel Investment {\n  investment_id String       @id @default(uuid())\n  user_id       String\n  user          User         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n  amount        Float        @default(0.0)\n  created       DateTime?    @default(now())\n  updated_at    DateTime?    @updatedAt\n  withdrawals   Withdrawal[]\n\n  @@index([user_id])\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  withdrawal_id String     @id @default(uuid())\n  description   String\n  amount        Float\n  investment_id String\n  investment    Investment @relation(fields: [investment_id], references: [investment_id], onDelete: Cascade, onUpdate: Cascade)\n  user_id       String\n  user          User       @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n\n  @@index([user_id, investment_id])\n  @@map("withdrawals")\n}\n\nmodel WithDrawalMethod {\n  id String @id @default(uuid())\n\n  name Methods @default(MOMO)\n\n  details String\n\n  user_id String @unique\n\n  user User? @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n\n  @@map("withdrawal_methods")\n}\n\nenum Methods {\n  MOMO\n  BANK\n  CASH\n}\n',
+            '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = "dart run orm"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  user_id             String            @id @default(uuid())\n  first_name          String            @default("")\n  last_name           String            @default("")\n  password            String\n  email_address       String            @unique\n  residential_address String            @default("")\n  created             DateTime?         @default(now())\n  updated_at          DateTime?         @updatedAt\n  investments         Investment[]\n  withdrawal_method   WithDrawalMethod?\n  withdrawals         Withdrawal[]\n\n  @@index([user_id, email_address])\n  @@map("users")\n}\n\nmodel Investment {\n  investment_id   String         @id @default(uuid())\n  investment_type InvestmentType @default(NORMAL)\n  user_id         String\n  user            User           @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n  amount          Float          @default(0.0)\n  created         DateTime?      @default(now())\n  updated_at      DateTime?      @updatedAt\n  withdrawals     Withdrawal[]\n\n  @@index([user_id, investment_id])\n  @@map("investments")\n}\n\nmodel Withdrawal {\n  withdrawal_id String     @id @default(uuid())\n  description   String\n  amount        Float\n  investment_id String\n  investment    Investment @relation(fields: [investment_id], references: [investment_id], onDelete: Cascade, onUpdate: Cascade)\n  user_id       String\n  user          User       @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n\n  @@index([user_id, investment_id])\n  @@map("withdrawals")\n}\n\nmodel WithDrawalMethod {\n  id String @id @default(uuid())\n\n  name Methods @default(MOMO)\n\n  details String\n\n  user_id String @unique\n\n  user User? @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)\n\n  @@map("withdrawal_methods")\n}\n\nenum Methods {\n  MOMO\n  BANK\n  CASH\n}\n\nenum InvestmentType {\n  NORMAL\n  ADVANCE\n  MILD\n}\n',
         datasources: const {
           'db': _i1.Datasource(
             _i1.DatasourceType.environment,

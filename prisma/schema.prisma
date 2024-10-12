@@ -31,15 +31,16 @@ model User {
 }
 
 model Investment {
-  investment_id String       @id @default(uuid())
-  user_id       String
-  user          User         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
-  amount        Float        @default(0.0)
-  created       DateTime?    @default(now())
-  updated_at    DateTime?    @updatedAt
-  withdrawals   Withdrawal[]
+  investment_id   String         @id @default(uuid())
+  investment_type InvestmentType @default(NORMAL)
+  user_id         String
+  user            User           @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  amount          Float          @default(0.0)
+  created         DateTime?      @default(now())
+  updated_at      DateTime?      @updatedAt
+  withdrawals     Withdrawal[]
 
-  @@index([user_id])
+  @@index([user_id, investment_id])
   @@map("investments")
 }
 
@@ -74,4 +75,10 @@ enum Methods {
   MOMO
   BANK
   CASH
+}
+
+enum InvestmentType {
+  NORMAL
+  ADVANCE
+  MILD
 }

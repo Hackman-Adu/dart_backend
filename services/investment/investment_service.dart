@@ -13,19 +13,28 @@ class InvestmentService implements InvestmentServiceManager {
   InvestmentService(this.prismaClient);
   PrismaClient prismaClient;
 
+  InvestmentType _getInvestmentType(String? type) {
+    try {
+      if (type == null) return InvestmentType.normal;
+      return InvestmentType.values.byName(type);
+    } catch (e) {
+      return InvestmentType.normal;
+    }
+  }
+
   @override
   Future<Investment?> addInvestment(RequestContext context) async {
     var payload = await context.request.json();
     var amount = double.parse(payload['amount']?.toString() ?? "0");
+    var investmentType = _getInvestmentType(payload['investment_type']);
     if (amount <= 0)
       throw Failure(HttpStatus.badRequest,
           "Investment amount cannot be less than or equal to zero");
     var user = context.read<User>();
     var investment = await prismaClient.investment.create(
-        include: InvestmentInclude(
-            user: PrismaUnion.$1(false), withdrawals: PrismaUnion.$1(false)),
         data: PrismaUnion.$2(InvestmentUncheckedCreateInput(
             userId: user.userId ?? "",
+            investmentType: investmentType,
             amount: double.parse(amount.toString()))));
     return investment;
   }
@@ -35,7 +44,6 @@ class InvestmentService implements InvestmentServiceManager {
       RequestContext context, String? investmentId) async {
     var user = context.read<User>();
     var investment = await this.prismaClient.investment.findUnique(
-        include: InvestmentInclude(withdrawals: PrismaUnion.$1(true)),
         where: InvestmentWhereUniqueInput(
             investmentId: investmentId,
             AND: PrismaUnion.$1(InvestmentWhereInput(
@@ -107,7 +115,6 @@ class InvestmentService implements InvestmentServiceManager {
   Future<List<Withdrawal?>?> getUserWithdrawals(RequestContext context) async {
     var user = context.read<User>();
     var withdrawals = await this.prismaClient.withdrawal.findMany(
-        include: WithdrawalInclude(investment: PrismaUnion.$1(true)),
         where: WithdrawalWhereInput(
             userId: PrismaUnion.$1(
                 StringFilter(equals: PrismaUnion.$1(user.userId ?? "")))));
