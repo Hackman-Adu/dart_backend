@@ -7,5 +7,9 @@ abstract class UserServiceManager {
 
   Future<User?> login(RequestContext context);
 
+  Future<User?> getUser(RequestContext context);
+
+  Future<bool?> deleteUser(RequestContext context);
+
   Future<User?> update(RequestContext context);
 }

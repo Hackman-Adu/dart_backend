@@ -6,6 +6,7 @@ import '../helpers/response.dart';
 import '../prisma/generated_dart_client/client.dart';
 import '../prisma/generated_dart_client/model.dart';
 import '../services/investment/investment_service.dart';
+import '../services/user/user_service.dart';
 
 class InvestmentController {
   InvestmentController(this.prismaClient);
@@ -17,31 +18,34 @@ class InvestmentController {
   Response _parseInvestments(List<Investment?>? investments) {
     return Success(
             message: "Successful",
-            data: investments?.map((e) => e?.toJson()).toList())
+            data: investments?.map((e) => e?.toJson().removeNulls()).toList())
         .toJson(include: {
-      "balance": investments
-          ?.map((e) => e?.amount ?? 0)
-          .toList()
-          .reduce((a, b) => a + b)
+      if (investments?.length != 0)
+        "balance": investments
+            ?.map((e) => e?.amount ?? 0)
+            .toList()
+            .reduce((a, b) => a + b)
     });
   }
 
   Response _parseWithdrawals(List<Withdrawal?>? withdrawals) {
     return Success(
             message: "Successful",
-            data: withdrawals?.map((e) => e?.toJson()).toList())
+            data: withdrawals?.map((e) => e?.toJson().removeNulls()).toList())
         .toJson(include: {
-      "total_withdrwal": withdrawals
-          ?.map((e) => e?.amount ?? 0)
-          .toList()
-          .reduce((a, b) => a + b)
+      if (withdrawals?.length != 0)
+        "total_withdrwal": withdrawals
+            ?.map((e) => e?.amount ?? 0)
+            .toList()
+            .reduce((a, b) => a + b)
     });
   }
 
   Future<Response> addInvestment(RequestContext context) async {
     try {
       var investment = await this.investmentService.addInvestment(context);
-      return Success(data: investment?.toJson(), message: "Successful")
+      return Success(
+              data: investment?.toJson().removeNulls(), message: "Successful")
           .toJson();
     } on Failure catch (failure) {
       return failure.toJson();
@@ -53,7 +57,8 @@ class InvestmentController {
   Future<Response> addWithdrawal(RequestContext context) async {
     try {
       var withdrawal = await this.investmentService.addWithdrawal(context);
-      return Success(data: withdrawal?.toJson(), message: "Successful")
+      return Success(
+              data: withdrawal?.toJson().removeNulls(), message: "Successful")
           .toJson();
     } on Failure catch (failure) {
       return failure.toJson();
@@ -105,7 +110,8 @@ class InvestmentController {
     try {
       var investment =
           await this.investmentService.getInvestmentById(context, investmentId);
-      return Success(data: investment?.toJson(), message: "Successful")
+      return Success(
+              data: investment?.toJson().removeNulls(), message: "Successful")
           .toJson();
     } on Failure catch (failure) {
       return failure.toJson();

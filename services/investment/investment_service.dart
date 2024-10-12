@@ -22,6 +22,8 @@ class InvestmentService implements InvestmentServiceManager {
           "Investment amount cannot be less than or equal to zero");
     var user = context.read<User>();
     var investment = await prismaClient.investment.create(
+        include: InvestmentInclude(
+            user: PrismaUnion.$1(false), withdrawals: PrismaUnion.$1(false)),
         data: PrismaUnion.$2(InvestmentUncheckedCreateInput(
             userId: user.userId ?? "",
             amount: double.parse(amount.toString()))));
@@ -48,10 +50,6 @@ class InvestmentService implements InvestmentServiceManager {
   Future<List<Investment?>?> getUserInvestments(RequestContext context) async {
     var user = context.read<User>();
     var investments = await this.prismaClient.investment.findMany(
-        include: InvestmentInclude(
-            $count: PrismaUnion.$1(false),
-            withdrawals: PrismaUnion.$1(true),
-            user: PrismaUnion.$1(false)),
         where: InvestmentWhereInput(
             userId: PrismaUnion.$1(
                 StringFilter(equals: PrismaUnion.$1(user.userId ?? "")))));

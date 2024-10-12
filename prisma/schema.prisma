@@ -5,60 +5,73 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider = "dart run orm"
+  provider = "dart run orm"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-    user_id             String             @id @default(uuid())
-    first_name          String             @default("")
-    last_name           String             @default("")
-    password            String
-    email_address       String             @unique
-    residential_address String             @default("")
-    created             DateTime?          @default(now())
-    updated_at          DateTime?          @updatedAt
-    investments         Investment[]
-    withdrawal_methods  WithDrawalMethod[]
-    withdrawals         Withdrawal[]
+  user_id             String            @id @default(uuid())
+  first_name          String            @default("")
+  last_name           String            @default("")
+  password            String
+  email_address       String            @unique
+  residential_address String            @default("")
+  created             DateTime?         @default(now())
+  updated_at          DateTime?         @updatedAt
+  investments         Investment[]
+  withdrawal_method   WithDrawalMethod?
+  withdrawals         Withdrawal[]
 
-    @@map("users")
+  @@index([user_id, email_address])
+  @@map("users")
 }
 
 model Investment {
-    investment_id String       @id @default(uuid())
-    user_id       String       @unique
-    user          User?        @relation(fields: [user_id], references: [user_id])
-    amount        Float        @default(0.0)
-    withdrawals   Withdrawal[]
+  investment_id String       @id @default(uuid())
+  user_id       String
+  user          User         @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  amount        Float        @default(0.0)
+  created       DateTime?    @default(now())
+  updated_at    DateTime?    @updatedAt
+  withdrawals   Withdrawal[]
 
-    @@map("investments")
+  @@index([user_id])
+  @@map("investments")
 }
 
 model Withdrawal {
-    withdrawal_id String     @id @default(uuid())
-    description   String
-    amount        Float
-    investment_id String
-    investment    Investment @relation(fields: [investment_id], references: [investment_id])
-    user_id       String
-    user          User       @relation(fields: [user_id], references: [user_id])
+  withdrawal_id String     @id @default(uuid())
+  description   String
+  amount        Float
+  investment_id String
+  investment    Investment @relation(fields: [investment_id], references: [investment_id], onDelete: Cascade, onUpdate: Cascade)
+  user_id       String
+  user          User       @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
 
-    @@map("withdrawals")
+  @@index([user_id, investment_id])
+  @@map("withdrawals")
 }
 
 model WithDrawalMethod {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    name String @default("")
+  name Methods @default(MOMO)
 
-    user_id String @unique
+  details String
 
-    user User? @relation(fields: [user_id], references: [user_id])
+  user_id String @unique
 
-    @@map("withdrawal_methods")
+  user User? @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("withdrawal_methods")
+}
+
+enum Methods {
+  MOMO
+  BANK
+  CASH
 }

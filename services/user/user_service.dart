@@ -19,11 +19,16 @@ class UserService implements UserServiceManager {
   Future<User> login(RequestContext context) async {
     var payload = User.fromJson(await context.request.json() ?? {});
     var user = await this.prismaClient.user.findUnique(
+        include: UserInclude(
+            investments: PrismaUnion.$1(false),
+            $count: PrismaUnion.$1(false),
+            withdrawals: PrismaUnion.$1(false),
+            withdrawalMethod: PrismaUnion.$1(false)),
         where: UserWhereUniqueInput(emailAddress: payload.emailAddress));
     if (user == null) throw Failure(HttpStatus.notFound, "User not found");
     if (!equalPassword(payload.password, user.password))
       throw Failure(HttpStatus.unauthorized, "Incorrect email or password");
-    return user;
+    return User.fromJson(user.toJson().removeKey("password"));
   }
 
   @override
@@ -41,7 +46,10 @@ class UserService implements UserServiceManager {
     }
     var createdUser = await this.prismaClient.user.create(
         include: UserInclude(
-            $count: PrismaUnion.$1(false), investments: PrismaUnion.$1(false)),
+            investments: PrismaUnion.$1(false),
+            $count: PrismaUnion.$1(false),
+            withdrawals: PrismaUnion.$1(false),
+            withdrawalMethod: PrismaUnion.$1(false)),
         data: PrismaUnion.$1(UserCreateInput(
             emailAddress: payload.emailAddress ?? "",
             password: hashPassword(payload.password))));
@@ -56,6 +64,11 @@ class UserService implements UserServiceManager {
     if (user == null) throw Failure(HttpStatus.notFound, "User not found");
     var payload = User.fromJson(await request.json());
     var updatedUser = await prismaClient.user.update(
+        include: UserInclude(
+            investments: PrismaUnion.$1(false),
+            $count: PrismaUnion.$1(false),
+            withdrawals: PrismaUnion.$1(false),
+            withdrawalMethod: PrismaUnion.$1(false)),
         data: PrismaUnion.$2(UserUncheckedUpdateInput(
             residentialAddress: PrismaUnion.$2(StringFieldUpdateOperationsInput(
                 set: payload.residentialAddress ?? user.residentialAddress)),
@@ -65,5 +78,41 @@ class UserService implements UserServiceManager {
                 set: payload.firstName ?? user.firstName)))),
         where: UserWhereUniqueInput(userId: user.userId));
     return updatedUser;
+  }
+
+  @override
+  Future<bool?> deleteUser(RequestContext context) async {
+    var user = context.read<User>();
+    var results = await prismaClient.user
+        .delete(where: UserWhereUniqueInput(userId: user.userId));
+    return results != null;
+  }
+
+  @override
+  Future<User?> getUser(RequestContext context) async {
+    var user = context.read<User>();
+    var queryUser = await prismaClient.user.findUnique(
+        include: UserInclude(
+            investments: PrismaUnion.$1(false),
+            $count: PrismaUnion.$1(false),
+            withdrawals: PrismaUnion.$1(false),
+            withdrawalMethod: PrismaUnion.$1(false)),
+        where: UserWhereUniqueInput(userId: user.userId));
+    if (queryUser == null) throw Failure(HttpStatus.notFound, "User not found");
+    return queryUser;
+  }
+}
+
+extension MapExtension on Map {
+  Map removeNulls() {
+    var data = this;
+    data.removeWhere((k, v) => v == null);
+    return data;
+  }
+
+  Map removeKey(String key) {
+    var data = this;
+    data.removeWhere((k, v) => k == key);
+    return data;
   }
 }

@@ -10,6 +10,10 @@ Future<Response> onRequest(RequestContext context) async {
   switch (request.method) {
     case HttpMethod.put:
       return controller.update(context);
+    case HttpMethod.delete:
+      return controller.deleteUser(context);
+    case HttpMethod.get:
+      return controller.getUser(context);
     default:
       return Response(statusCode: HttpStatus.methodNotAllowed);
   }
